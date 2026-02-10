@@ -1,0 +1,38 @@
+- Two types of website
+		- ***Static Website
+			- Follow top to down approach
+			- First, find the technologies used - two tools
+				- `Wappalyzer
+				- `Whatweb`
+				- Here, `Wappalyzer` gives more fault output. So, use `Whatweb` or `Manual` method (by checking source code)
+			- After knowing technology focus on that technology test cases
+			- At first check `P5` bugs (Best security practices) like what headers are missing, SSL, http connection
+			- For static page - first thing - find origin IP
+			- If you find origin IP - there is WAF implemented into it - Which is `P4` bug
+			- Second- perform directory busting
+				- Directory busting types
+					- `Normal`
+					- `Recursive`
+					- `Permuted`
+			- ***If abc.com is static page then they hunt on this and go back. Stop and go searching for sub domains
+			- Go to source code for hidden secrets, JS files
+			- Next , go for Generic vulnerabilities - lets say website uses swagger UI and version used by that company has XSS in UI then go for hunting XSS
+			- Next check, rate limits
+			- Then, Broken link hijacking
+			- Then, Web hooks- website allows us to book or schedule a call with their agents in calendar. But this was not linked with dashboard. So, I see linking ID of calendar and made similar account with same ID and I was able to get all particular schedules. This is `P1` bug because it is `PII` disclosure
+			- Lets check, if they are internally hosted(means not using third party service) and has option to upload- try XSS via `png` or `jpg` or `pdf`, try path traversal, unsafe file upload
+			- Next, try manual XSS, CRLF, admin panel disclosure
+		- ***Dynamic Website
+			- Follow all steps of static website
+			- Then check signup
+			- Forget password
+			- Login
+				- Pre-login
+				- Post login(After login)
+					- Unsafe file uploads
+					- Broken access control
+					- Privilege escalation
+					- CSRF
+					- XSS
+					- Privacy Issue
+					- Checklist
