@@ -75,7 +75,7 @@ https://www.ipaddressguide.com/cidr
 https://www.ipaddressguide.com/cidr
 ```
 
--**Note**
+- **Note**
 - In place of 
 ```text
  https://whois.arin.net/ui/ 
@@ -84,3 +84,31 @@ https://www.ipaddressguide.com/cidr
  ```text
  https://bgp.he.net/ 
  ```
+
+## To directly get IP address
+```text
+ping facebook.com
+```
+- For only IPv4
+```text
+ping -4 facebook.com
+```
+
+## Some other beautiful website
+```text
+https://www.whoxy.com/
+```
+```text
+https://lopseg.com.br/
+```
+```text
+```text
+https://whois.domaintools.com/
+```
+
+## How to find acquisition?
+- To find acquisition, take help of chatgpt
+- Go to chatgpt and searc
+```text
+Hey, I want a list of all acquisition by Meta or Facebook till now
+```
