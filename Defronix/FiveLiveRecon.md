@@ -112,3 +112,18 @@ https://whois.domaintools.com/
 ```text
 Hey, I want a list of all acquisition by Meta or Facebook till now
 ```
+
+- **Go to chrome web store and add extension**
+```text
+wappalyzer
+```
+- **next go with**
+```text
+https://builtwith.com/
+```
+
+## Use amass tool available in kali linux
+```text
+amass -h
+amass intel -asn 32934
+```
