@@ -55,5 +55,5 @@ app.admin.blog.example.com
     - **first way**
         - Go to this site
 ```text
- arin whois 
+ https://whois.arin.net/ui/ 
  ```
