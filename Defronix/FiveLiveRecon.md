@@ -51,9 +51,36 @@ app.admin.blog.example.com
 - **IP blocks**
 - **Acquisitions**
 
-    ## How to find IP blocks?
-    - **first way**
-        - Go to this site
+## How to find IP blocks?
+- **first way**
+    - Go to this site
 ```text
  https://whois.arin.net/ui/ 
+ ```
+- **Next**
+    - Go to this website and click in supertool
+```text
+https://mxtoolbox.com/SuperTool.aspx
+```
+    - Select ASN lookup and put ASN number. Now it provides CIDR range
+
+- **If you want to calculate IP in CIDR range then go to**
+```text
+https://www.ipaddressguide.com/cidr
+```
+
+- **Now, How to scan this much IP range because it is difficult to scan one by one. But we have a tool called angry IP Scanner**
+- **Open angry IP scanner and use first and last IP of following calculated IP**
+```text
+https://www.ipaddressguide.com/cidr
+```
+
+-**Note**
+- In place of 
+```text
+ https://whois.arin.net/ui/ 
+ ```
+ - we can use
+ ```text
+ https://bgp.he.net/ 
  ```
