@@ -70,7 +70,7 @@ Server:Prismview Player
 
 ## 🌍 Target Scope Types
 
-- **Single Domain**
+ **Single Domain**
 ```text
 abc.com
 ```
