@@ -28,3 +28,16 @@ app.admin.blog.example.com
     - ARIN
     - LACNIC
     - RIPE NCC
+
+
+**Note: Small organizations don't have dedicated CIDR range**
+
+## Vertical VS Horizontal Correlation
+- **If we take facebook as host then**
+    - **Horizontal**
+        - ```text
+        facebook.cn 
+        facebook.ir
+        instagram.com
+        whatapps.com
+        ```
