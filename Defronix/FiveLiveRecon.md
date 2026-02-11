@@ -54,4 +54,6 @@ app.admin.blog.example.com
     ## How to find IP blocks?
     - **first way**
         - Go to this site
-            - ```arin whois ```
+```text
+ arin whois 
+ ```
