@@ -35,9 +35,23 @@ app.admin.blog.example.com
 ## Vertical VS Horizontal Correlation
 - **If we take facebook as host then**
     - **Horizontal**
-        - ```text
-        facebook.cn 
-        facebook.ir
-        instagram.com
-        whatapps.com
-        ```
+        - facebook.cn 
+        - facebook.ir
+        - instagram.com
+        - whatapps.com
+    
+    - **Vertical**
+        - blog.facebook.com
+        - help.facebook.com
+        - a.blog.facebook.com
+
+# If facebook.com is target then perform following
+- **Horizontal subdomain**
+- **Vertical subdomain**
+- **IP blocks**
+- **Acquisitions**
+
+    ## How to find IP blocks?
+    - **first way**
+        - Go to this site
+            - ```arin whois ```
