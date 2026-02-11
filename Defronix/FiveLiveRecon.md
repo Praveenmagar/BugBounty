@@ -3,16 +3,16 @@
 ```text
 app.admin.blog.example.com
 ```
-**com**
-- Top level domain
-**example**
-- root domain
-**blog**
-- first level subdomain
-**admin**
-- Second level subdomain
-**app**
-- Third level subdomain
+- **com**
+    - Top level domain
+- **example**
+    - root domain
+- **blog**
+    - first level subdomain
+- **admin**
+    - Second level subdomain
+- **app**
+    - Third level subdomain
 
 ## Classless Inter-Domain Routing(CIDR)
 - It is an IP address allocation method that improves data routing efficiency on the internet
