@@ -18,9 +18,9 @@
 ```text
 Authorization: Basic QWxhZGpbjpPcGVuV----
 ```
-    - Here if we decode, QWxhZGpbjpPcGVuV---- contains username and Password seperated by colon
+- Here if we decode, QWxhZGpbjpPcGVuV---- contains username and Password seperated by colon
 ```text
 QWxhZGpbjpPcGVuV---- = Aladdin:OpenSesame
 ```
-    - Aladdin= Username
-    - OpenSesame= Password
+ - Aladdin= Username
+ - OpenSesame= Password
