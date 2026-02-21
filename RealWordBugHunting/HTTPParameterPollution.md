@@ -30,4 +30,4 @@ https://www.bank.com/transfer?to=6789&amount=5000&from=ABCDE
 ```
 
 **Example**
-i. Hackerone Social Sharing Buttons
+-  *Hackerone Social Sharing Buttons*
