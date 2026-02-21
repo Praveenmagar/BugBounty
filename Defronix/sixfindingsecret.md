@@ -22,11 +22,11 @@ port:21
 ```text
 asn:as32934
 ```
--**For more deeper**
+- **For more deeper**
 ```text
 asn:as32934 http.title:"5xx Server Error"
 ```
-- **To remove something use hyphen(-) symbol
+- **To remove something use hyphen(-) symbol**
 ```text
 asn:as32934 -http.title:"Error" -http.title:"5xx Server Error"
 ```
@@ -34,4 +34,9 @@ asn:as32934 -http.title:"Error" -http.title:"5xx Server Error"
 - **For facebook meta certificate**
 ```text
 ssl:"Meta Platforms, inc."
+```
+
+- **To search specific filter**
+```text
+ssl.cert.subject.cn:"facebook.com" http.status:404
 ```
