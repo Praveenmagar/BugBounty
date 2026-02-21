@@ -30,7 +30,7 @@ https://www.bank.com/transfer?to=6789&amount=5000&from=ABCDE
 ```
 
 **Example**
--  **Hackerone Social Sharing Buttons**
+**Hackerone Social Sharing Buttons**
 - To find HPP vulnerability look for link that appears to contact other services
 - Normal URL
  ```text
@@ -50,3 +50,7 @@ https://twitter.com/i/u?iid=F6542&uid=1134885524&nid=22+26&sig=647192e86ef------
 ```text
 https://twitter.com/i/u?iid=F6542&uid=2321301342&uid=1134885524&nid=22+26&sig=647192e86ef-------
 ```
+
+# Summary
+- HPP vulnerability require more testing than some other vulnerabilities
+- Social media links are good place to search for HPP first
