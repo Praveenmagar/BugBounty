@@ -30,4 +30,11 @@ https://www.bank.com/transfer?to=6789&amount=5000&from=ABCDE
 ```
 
 **Example**
--  *Hackerone Social Sharing Buttons*
+-  **Hackerone Social Sharing Buttons**
+    - To find HPP vulnerability look for link that appears to contact other services
+    - ```text
+    https://hackerone.com/blog/introducing-signal
+    ```
+    - ```text
+    https://www.facebook.com/sharer.php?u=https://hackerone.com/blog/introducing-signal?&u=https://vk.com/durov
+    ```
