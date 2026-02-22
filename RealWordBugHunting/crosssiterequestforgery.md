@@ -33,3 +33,9 @@ QWxhZGpbjpPcGVuV---- = Aladdin:OpenSesame
         - Max-age: number of second until cookie expire
         - Secure: send cookie only in https site
         - httponly: read cookie only through http and https, Js can't read it
+    - Single site set 50 to 150 cookies in common browser
+    - Some support upto 600 cookies
+    - Browser allow 4KB per cookie
+    - Website uses cookie named sessionId to remember user rather than username and password
+
+## CSRF With GET REQUEST
