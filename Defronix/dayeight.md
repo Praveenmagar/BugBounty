@@ -6,7 +6,7 @@ subfinder
 ```
 subfinder -d samsung.com -all -silent -o samsung.txt
 ```
-- ***Now we need to find subdomain of subdomain
+- **Now we need to find subdomain of subdomain**
 	- Firstly, we can use `ffuf`
 		``` 
         ffuf -c -u https://FUZZ.samsung.com -w n0kovo_subdomains_medium.txt -mc 200 -rate 100 -v
@@ -19,12 +19,25 @@ subfinder -d samsung.com -all -silent -o samsung.txt
         https://github.com/shmilylty/OneForAll/blob/master/docs/en-us/README.md
         ```
 		- For this tool i have use virtual environment in Parrot OS
-			- `cd /home/praveen/OneForAll`
-			- `python3 -m venv myenv
-			- `source myenv/bin/activate
-			- `deactivate`
-			- `python3 oneforall.py --help`
-			- `python3 oneforall.py --target example.com run`
+			```
+            cd /home/praveen/OneForAll
+            ```
+			```
+            python3 -m venv myenv
+            ```
+			```
+            source myenv/bin/activate
+            ```
+
+			```
+            deactivate
+            ```
+			```
+            python3 oneforall.py --help
+            ```
+			```
+            python3 oneforall.py --target example.com run
+            ```
 - ***Tool to find subdomain of subdomain
 	- Use shuffledns 
 		- `https://github.com/projectdiscovery/shuffledns`
