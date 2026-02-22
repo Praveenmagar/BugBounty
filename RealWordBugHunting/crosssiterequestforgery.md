@@ -39,3 +39,14 @@ QWxhZGpbjpPcGVuV---- = Aladdin:OpenSesame
     - Website uses cookie named sessionId to remember user rather than username and password
 
 ## CSRF With GET REQUEST
+- If bank accept transfer via GET request, malicious site send http request with either hidden form or <img> tag
+- When browser render <img> tag it makes HTTP GET request to src attributes and include any existing cookie in that request
+- Malicious <img> tag using fake URL as its source
+```text
+<img src="https://www.bank.com/transfer?from=bob&to=Joe&amount=5000">
+```
+- when Bob visits attacker owned site having <img> tag in its response, browser make HTTP GET request to bank
+
+**Solution**
+- Avoid HTTP GET request on backend
+- Use POST with CSRF protection
