@@ -75,9 +75,9 @@ subfinder -d samsung.com -all -silent -o samsung.txt
 
 
 # Running httpx to check http server (Which are live)
-	```
-    cat samsungsorted.txt | httpx-toolkit > samsunglive.txt
-    ```
+```
+cat samsungsorted.txt | httpx-toolkit > samsunglive.txt
+```
 - Note: If there is problem with `httpx-toolkit` you can go with `httprobe`
 
 **To merge two files**
@@ -85,8 +85,10 @@ subfinder -d samsung.com -all -silent -o samsung.txt
 cat file1.txt file2.txt > newmerge.txt
 ```
 
-- ### After finding live now lets do screenshot
-	- `cat teslafinal.txt | aquatone -out Aquatone`
+# After finding live now lets do screenshot
+```
+cat teslafinal.txt | aquatone -out Aquatone
+```
 
 
 - ### Now lets perform directory bruteforce
