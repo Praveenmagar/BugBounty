@@ -11,9 +11,13 @@ subfinder -d samsung.com -all -silent -o samsung.txt
 		``` 
         ffuf -c -u https://FUZZ.samsung.com -w n0kovo_subdomains_medium.txt -mc 200 -rate 100 -v
         ```
-		- `ffuf -c -u https://FUZZ.samsung.com -w n0kovo_subdomains_medium.txt -mc 200 -rate 100 -v -o file.txt`
+		```
+        ffuf -c -u https://FUZZ.samsung.com -w n0kovo_subdomains_medium.txt -mc 200 -rate 100 -v -o file.txt
+        ```
 	- Use tool `Oneforall`
-		- `https://github.com/shmilylty/OneForAll/blob/master/docs/en-us/README.md
+		```
+        https://github.com/shmilylty/OneForAll/blob/master/docs/en-us/README.md
+        ```
 		- For this tool i have use virtual environment in Parrot OS
 			- `cd /home/praveen/OneForAll`
 			- `python3 -m venv myenv
