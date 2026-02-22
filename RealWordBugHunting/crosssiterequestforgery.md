@@ -128,5 +128,4 @@ hello
     - Sometimes bypass CORS by changing content-type
         - application/json to application/x-www-form-urlencoded
         - use GET request instead of POST
-    - ** Browser send OPTION HTTP automatically if content-type is application/json but won't send automatically if it's GET request or content-type is application/x-www-form-urlencoded
-    
+    - **Browser send OPTION HTTP automatically if content-type is application/json but won't send automatically if it's GET request or content-type is application/x-www-form-urlencoded**
