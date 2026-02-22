@@ -84,3 +84,19 @@ hello
 ```
 - Once the form is submitted, browser make POST request to send Bob's cookies to bank site, which invokes transfer
 - POST request send HTTP response back to browser, the attacker hide response in iFrame using "display:none"
+
+**Other Scenario**
+- Site might expect POST request to be submitted with content-type application/json
+- some cases request with application/json type have CSRF token
+- Sometime HTTP body of POST request has token
+- Sometime POST request has custom header with name like X-CSRF-Token
+- Browser send OPTIONS HTTP request before POST request site respond to OPTION call indicating types of HTTP requests it accepts and from which trusted origins(this is referred as preflight OPTIONS)
+- The sets of rules defining when and how website can read responses from each other is called Cross Origin resource sharing(CORS)
+- You can't submit application/json request, unless site being tested allow it
+
+**Some Cases**
+- You can bypass these protections by changing content-type to
+    - application/x-www-form-urlencoded
+    - multipart/form-data
+    - text/plain
+- Browser don't send preflight OPTION call for any of them when making POST request
