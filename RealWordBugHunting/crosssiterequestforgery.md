@@ -100,3 +100,33 @@ hello
     - multipart/form-data
     - text/plain
 - Browser don't send preflight OPTION call for any of them when making POST request
+
+
+**PROTECTION OF CSRF**
+- CSRF TOKEN
+    - web app generate token in two parts
+        - One Bob would receive
+        - One application retain
+    - When Bob attempt to make transfer request, he have to submit his token, which bank validate with its side of token
+    - Some names of token are X-CSRF-TOKEN, Lia-Token, rt or form-id
+    - Token can be included in
+        - HTTP request header
+        - HTTP POST body
+        - hidden field
+```text
+<form method='POST' action='http://bank.com/transfer'>
+<input type="text" name="from" value="bob">
+------------------------------------------
+------------------------------------------
+<input type="hidden" name="csrf" value="1Ht7DDyVUNKo----------">
+```
+- **Try removing token, change its value and so on to conform token has been implemented properly**
+
+
+- USING CORS
+    - This isn't fullproof because it relies on browser security and ensuring proper CORS
+    - Sometimes bypass CORS by changing content-type
+        - application/json to application/x-www-form-urlencoded
+        - use GET request instead of POST
+    - ** Browser send OPTION HTTP automatically if content-type is application/json but won't send automatically if it's GET request or content-type is application/x-www-form-urlencoded
+    
