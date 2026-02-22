@@ -24,3 +24,12 @@ QWxhZGpbjpPcGVuV---- = Aladdin:OpenSesame
 ```
  - Aladdin= Username
  - OpenSesame= Password
+
+- **Using Cookie**
+    - It is small file website create and store in User's browser
+    - Cookie attributes
+        - Domain
+        - Expires: tell browser to destroy cookie on specific date
+        - Max-age: number of second until cookie expire
+        - Secure: send cookie only in https site
+        - httponly: read cookie only through http and https, Js can't read it
