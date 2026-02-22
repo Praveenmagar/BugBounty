@@ -1,7 +1,9 @@
-### Now we know how to find subdomains
+# Now we know how to find subdomains
 - Using 
-	- `subfinder`
-	- `subfinder -d samsung.com -all -silent -o samsung.txt`
+```
+subfinder
+```
+`subfinder -d samsung.com -all -silent -o samsung.txt`
 - ***Now we need to find subdomain of subdomain
 	- Firstly, we can use `ffuf`
 		- `ffuf -c -u https://FUZZ.samsung.com -w n0kovo_subdomains_medium.txt -mc 200 -rate 100 -v`
@@ -54,4 +56,6 @@
 		- `dirbuster`
 		- `gobuster`
 	- Now lets use `dirsearch`
-		- `dirsearch -l samsunglive.txt -e php,asp,http,aspx,js -i 200,400 -t 100`
+```text
+dirsearch -l samsunglive.txt -e php,asp,http,aspx,js -i 200,400 -t 100
+```
