@@ -34,14 +34,31 @@
         cat file.txt | subjs > file.txt
         ```
 - For `katana`
-	- `https://github.com/projectdiscovery/katana`
-		- `katana -u https://tesla.com -d 5 -headless -no-sandbox -xhr -jc`
-		- `katana -u https://tesla.com -d 5 -headless -no-sandbox -xhr -jc | grep ".js$"`
-		- `katana -list teslafile.txt -d 5 -headless -no-sandbox -xhr -jc -v| grep ".js$" | uniq | sort > savefile.txt`
-		- `katana -list teslafile.txt -d 5 -headless -no-sandbox -xhr -jc -o savefile.txt| grep ".js$"`
-		- `cat teslafile.txt | grep ".js$" > newteslafile.txt`: to move content from teslafile.txt to newteslafile.txt with `.js` extension
-		- `cat first.txt second.txt > third.txt`: to move content of `first.txt` and `second.txt` to `third.txt`
-		- `sort file.txt | uniq | wc -l`
+	```
+    https://github.com/projectdiscovery/katana
+    ```
+	```
+    katana -u https://tesla.com -d 5 -headless -no-sandbox -xhr -jc
+    ```
+	```
+    katana -u https://tesla.com -d 5 -headless -no-sandbox -xhr -jc | grep ".js$"
+    ```
+	```
+    katana -list teslafile.txt -d 5 -headless -no-sandbox -xhr -jc -v| grep ".js$" | uniq | sort > savefile.txt
+    ```
+	```
+    katana -list teslafile.txt -d 5 -headless -no-sandbox -xhr -jc -o savefile.txt| grep ".js$"
+    ```
+- to move content from teslafile.txt to newteslafile.txt with `.js` extension
+	```cat teslafile.txt | grep ".js$" > newteslafile.txt
+    ```
+- to move content of `first.txt` and `second.txt` to `third.txt`
+	```
+    cat first.txt second.txt > third.txt
+    ```
+	```
+    sort file.txt | uniq | wc -l
+    ```
 
 - To check unique
 	- `cat file.txt | uniq | wc -l`
