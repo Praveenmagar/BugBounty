@@ -50,7 +50,8 @@
     katana -list teslafile.txt -d 5 -headless -no-sandbox -xhr -jc -o savefile.txt| grep ".js$"
     ```
 - to move content from teslafile.txt to newteslafile.txt with `.js` extension
-	```cat teslafile.txt | grep ".js$" > newteslafile.txt
+	```
+    cat teslafile.txt | grep ".js$" > newteslafile.txt
     ```
 - to move content of `first.txt` and `second.txt` to `third.txt`
 	```
