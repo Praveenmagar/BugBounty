@@ -3,10 +3,14 @@
 ```
 subfinder
 ```
-`subfinder -d samsung.com -all -silent -o samsung.txt`
+```
+subfinder -d samsung.com -all -silent -o samsung.txt
+```
 - ***Now we need to find subdomain of subdomain
 	- Firstly, we can use `ffuf`
-		- `ffuf -c -u https://FUZZ.samsung.com -w n0kovo_subdomains_medium.txt -mc 200 -rate 100 -v`
+		``` 
+        ffuf -c -u https://FUZZ.samsung.com -w n0kovo_subdomains_medium.txt -mc 200 -rate 100 -v
+        ```
 		- `ffuf -c -u https://FUZZ.samsung.com -w n0kovo_subdomains_medium.txt -mc 200 -rate 100 -v -o file.txt`
 	- Use tool `Oneforall`
 		- `https://github.com/shmilylty/OneForAll/blob/master/docs/en-us/README.md
