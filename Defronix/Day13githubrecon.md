@@ -42,3 +42,13 @@
 	```
     "mydukaan.io" log NOT test NOT example
     ```
+
+    ```
+    "mydukaan.io" secret NOT test NOT example
+    ```
+
+**For Automation Tools**
+- GitDorker
+    ```
+    https://github.com/obheda12/GitDorker
+    ```
