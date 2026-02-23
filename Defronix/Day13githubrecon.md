@@ -25,7 +25,7 @@
 	```
     "mydukaan.io"
     ```
-		- `If you find any suspicious name then search it on Linkedin`
+- If you find any suspicious name then search it on Linkedin
 	```
     "mydukaan.io" password NOT test NOT example
     ```
@@ -38,7 +38,7 @@
 	```
     "mydukaan.io" authorization config aws_access_key_id NOT test NOT example
     ``` 
-		- `we can check for multiple value also
+- we can check for multiple value also
 	```
     "mydukaan.io" log NOT test NOT example
     ```
