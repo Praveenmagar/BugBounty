@@ -52,3 +52,26 @@
     ```
     https://github.com/obheda12/GitDorker
     ```
+    ```
+    git clone https://github.com/obheda12/GitDorker.git
+    ```
+    ```
+    cd GitDorker
+    ```
+    ```
+     python3 -m venv venvpath
+     ```
+     ```
+     source venvpath/bin/activate
+     ```
+     ```
+     pip3 install -r requirements.txt
+     ```
+     ```
+     deactivate
+     ```
+- To execute it at first deactivate it and in normal terminal type
+    ```
+    python3 GitDorker.py -h
+    ```
+    
