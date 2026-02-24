@@ -74,4 +74,21 @@
     ```
     python3 GitDorker.py -h
     ```
-    
+    ```
+    python3 GitDorker.py -d Dorks/medium_dorks.txt -tf tf/TOKENSFILE -q rapyd.net -lb
+    ```
+
+- GitGraber
+    ```
+    https://github.com/hisxo/gitGraber
+    ```
+    ```
+    git clone https://github.com/hisxo/gitGraber.git
+    ```
+    ```
+    cd gitGraber/
+    ```
+- To insert token
+    ```
+    nano config.py
+    ```

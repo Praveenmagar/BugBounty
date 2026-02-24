@@ -129,3 +129,26 @@ hello
         - application/json to application/x-www-form-urlencoded
         - use GET request instead of POST
     - **Browser send OPTION HTTP automatically if content-type is application/json but won't send automatically if it's GET request or content-type is application/x-www-form-urlencoded**
+
+
+**Other less effective methods**
+- Check value of Origin or Referer header submitted
+- Browser start to support a new cookie attributes called samesite. Samesite can be  set strict or lax
+
+
+**Example**
+- **SHOPIFY TWITTER DISCONNECT**
+    - For potential CSRF vulnerability look for GET request that modify server-side data
+    ```
+    https://twitter-commerce.shopifyapps.com/auth/twitter/disconnect/
+    ```
+    - Shopify was not validating legitimacy of GET request sent to it making URL vulnerable to CSRF
+    ```
+    <html>
+    <body>
+        <img src="https://twitter-commerce.shopifyapps.com/auth/twitter/disconnect">
+    </body>
+    </html>
+    ```
+    - To find this vulnerability
+        - Use proxy server like Burp or OWASP's ZAP to monitor HTTP request

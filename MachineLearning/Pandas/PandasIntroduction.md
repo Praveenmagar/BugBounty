@@ -22,3 +22,9 @@ pip install pandas
 ```text
 import pandas as pd
 ```
+
+**Importance of Pandas**
+- It helps to analyze big data and make conclusions based on statistical theories
+- It can clean messy data sets, and make them readable and relevant
+- Easy handling of missing data
+- Easy data set merging and joining
