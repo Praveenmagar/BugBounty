@@ -40,7 +40,7 @@
         ```
         &#60;&#104;&#49;&#62; ..........................
         ```
-        - Coinbase wouldn't filter tag and decode this string into HTML, which result website rendering (<h1>) tag
+        - Coinbase wouldn't filter tag and decode this string into HTML, which result website rendering h1 tag
 
 
 
