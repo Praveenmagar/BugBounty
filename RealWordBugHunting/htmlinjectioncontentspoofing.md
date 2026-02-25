@@ -85,3 +85,16 @@
     - **DOM is an API for HTML and XML documents that allows developer to modify structure, style and content of web page via JS**
     - As HackerOne was using dangerouslySetInnerHTML because it trust HTML it was reveiving from server. So, it inject HTML directly in DOM without escaping
             
+
+- **Hackerone Unintended HTML include fix Bypass**
+    ```
+    [test](http://www.torontowebsitedeveloper.com "test ismap="alert xss" yyy="test"")
+    ```
+        - This creates below HTML
+    ```
+    <a title="test' ismap="alert xss" yyy="test" href="http://www.torontowebsitedeveloper.com">test</a>
+    ```
+    - Here, markdown is confused with additional random double quotes and attributes and whether it would mistakely begin to track those as well
+        - ismap = valid HTML attribute
+        - yyy = invalid HTML attribute
+    - It is an unintended bug that caused markdown parser to generate arbitary HTML
