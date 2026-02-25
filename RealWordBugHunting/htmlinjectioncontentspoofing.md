@@ -111,3 +111,5 @@
         ```
     - Here, hacker tried to modify error parameter
         ![Screenshot](../images/htmlinjection1.png)
+    - This allows to inject in wordpress Login page
+        ![Screenshot](../images/htmlinjection2.png)
