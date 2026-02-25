@@ -40,11 +40,11 @@
         ```
         &#60;&#104;&#49;&#62; ..........................
         ```
-        - Coinbase wouldn't filter tag and decode this string into HTML, which result website rendering <h1> tag
+        - Coinbase wouldn't filter tag and decode this string into HTML, which result website rendering (<h1>) tag
 
 
 
-- **Hackerone unintended HTML inclusion
+- **Hackerone unintended HTML inclusion**
     - Markdown type of markup language uses specific syntax to generate HTML
     - Markdown accept and parse plaintext preceded by a hash symbol(#)
     - Syntax
@@ -78,7 +78,7 @@
         </body>
     </html>
     ```
-    - Here, Content attribute (a) to attacker input single quote would be send to attacker as part of URL's text parameter
+    - Here, Content attribute (a) to attacker input single quote at(b) would be send to attacker as part of URL's text parameter
     - Also include CSRF token
     - Here, HTML injection isn't issue because it uses React JS framework to render HTML
     - React escape all HTML unless JS function dangerouslySetInnerHTML is used to directly update DOM and render HTML
