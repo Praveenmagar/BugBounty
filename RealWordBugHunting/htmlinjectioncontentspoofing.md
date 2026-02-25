@@ -99,4 +99,15 @@
         - yyy = invalid HTML attribute
     - It is an unintended bug that caused markdown parser to generate arbitary HTML
 
-    ![Screenshot](../images/1.jpg)
+- **Within Security Content Spoofing**
+    - Hackerone site to share security news was built in wordpress
+    - Login path
+        ```
+        withinsecurity.com/wp-login.php
+        ```
+    - During login if error occur it render access_denied error message
+        ```
+        https://withinsecurity.com/wp-login.php?error=access_denied
+        ```
+    - Here, hacker tried to modify error parameter
+        ![Screenshot](../images/htmlinjection1.png)
