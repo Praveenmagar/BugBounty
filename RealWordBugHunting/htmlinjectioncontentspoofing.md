@@ -98,3 +98,5 @@
         - ismap = valid HTML attribute
         - yyy = invalid HTML attribute
     - It is an unintended bug that caused markdown parser to generate arbitary HTML
+
+    ![Screenshot](images/1.jpg)
