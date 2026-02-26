@@ -26,3 +26,12 @@
     ```
     python manage.py createsuperuser
     ```
+    - This creates superuser now run server and login to super user
+    ```
+    python manage.py runserver
+    ```
+    - go to /admin and login 
+
+
+- **Implementing template**
+
