@@ -65,3 +65,20 @@
 - **Registry Editor(regedit)**
     - It is for advanced computer users
     - To view or edit registry
+
+-**Windows Update**
+    - Updates are typically released on 2nd tuesday of each month called patch tuesday
+    - But in case of emergency they push the update via window update service
+
+- **Window Security**
+    - It is your home to manage the tools that protect your device and your data
+
+- **Bitlocker**
+    - On device with Trusted Platform Module(TPM) installed, Bitlocker offers best protection
+    - TPM is hardware component installed in many newer computers by computer manufactures
+
+- We should use a removable drive on system without a TPM version 1.2 or later. What does this removable drive contain? - Startup key
+
+- **Volume shadow copy Service**
+    - To create a consistent shadow copy also known as snapshot or point-in-time copy of data that is to be backed up
+    - Malware writer know this feature and write code in malware to look for these file and delete them doing this makes impossible to recover from ransomware attacks unless you have offline/offsite backup
