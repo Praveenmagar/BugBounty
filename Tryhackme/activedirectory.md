@@ -1,7 +1,7 @@
 # Active Directory Basics
 - Microsoft active directory is the backbone of the corporate world
 
--**Windows Domain**
+- **Windows Domain**
     - Small network: 
         - you can manage manually when you have 5 to 10 users
     - Large network:
