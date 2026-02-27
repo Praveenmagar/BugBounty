@@ -34,4 +34,6 @@
 
 
 - **Implementing template**
-
+    - Now lets remove default django page and create our own home page.
+    - At first, create URL pattern, for first(home) page always use empty string URL pattern
+    - Go to (urls.py) and create path
