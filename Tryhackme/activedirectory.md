@@ -84,3 +84,19 @@
     ![Screenshot](../images/Delegation/DL5.png)
 
     - Click next a couple of times, and now Phillip should be able to reset passwords for any user in the sales department
+
+**Performing action by Philips**
+- Go to attacker machine and open terminal and use RDP to open philip window
+    ```
+    xfreerdp ip_address
+    ```
+- and put phillip username and password and open powershell of phillip and type the following command and change sophie password
+    ```
+    Set-ADAccountPassword sophie -Reset -NewPassword (Read-Host -AsSecureString -Prompt 'New Password') -Verbose
+    ```
+- Now login with sophie as username and use new password just created
+
+- Since we wouldn't want Sophie to keep on using a password we know, we can also force a password reset at the next logon with the following command:
+    ```
+    Set-ADUser -ChangePasswordAtLogon $true -Identity sophie -Verbose
+    ```
