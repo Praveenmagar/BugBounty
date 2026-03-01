@@ -43,3 +43,12 @@
     - To delete OUs, we need to enable advanced features in view menu
     - After enabling it right click the OU and go to properties - Object
 
+    ![Screenshot](../images/AD3.png)
+    ![Screenshot](../images/AD4.png)
+    ![Screenshot](../images/AD5.png)
+    ![Screenshot](../images/AD6.png)
+    ![Screenshot](../images/AD7.png)
+    ![Screenshot](../images/AD8.png)
+    ![Screenshot](../images/AD9.png)
+    ![Screenshot](../images/AD10.png)
+
