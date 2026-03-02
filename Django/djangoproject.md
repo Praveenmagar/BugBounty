@@ -76,7 +76,7 @@
     - To create lets create seperate app
     ```
     python manage.py startapp dashboards
-    ``
+    ```
     - Once you create app now go to settings.py of main app and go to installed apps and write its name there
    
     ![Screenshot](../images/Python/ds1.png)
