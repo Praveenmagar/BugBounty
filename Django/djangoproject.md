@@ -57,3 +57,15 @@
     - to find and replace content and replace all == with >=
 
     ![Screenshot](../images/Python/req2.png)
+
+    - and run following
+    ```
+    pip install -r requirements.txt --upgrade
+    ```
+
+    - Now again run to bring back >= to ==
+    ```
+    pip freeze > requirements.txt
+    ```
+
+    ![Screenshot](../images/Python/req1.png)
