@@ -37,3 +37,23 @@
     - Now lets remove default django page and create our own home page.
     - At first, create URL pattern, for first(home) page always use empty string URL pattern
     - Go to (urls.py) and create path
+
+
+
+
+- **Upgrade content to latest version in project**
+    - create requirements.txt to see all library
+    ```
+    pip freeze > requirements.txt
+    ```
+    - This creates requirements.txt file
+
+    ![Screenshot](../images/Python/req1.png)
+
+    - Now type 
+    ```
+    ctrl + h
+    ```
+    - to find and replace content and replace all == with >=
+
+    ![Screenshot](../images/Python/req2.png)
