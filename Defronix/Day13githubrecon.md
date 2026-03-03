@@ -92,3 +92,26 @@
     ```
     nano config.py
     ```
+
+- **After that to run this create virtual environment**
+    ```
+    python3 -m venv env
+    ```
+    
+    ```
+    source env/bin/activate
+    ```
+
+    - Now check requirements
+        ```
+        cat requirements.txt
+        ```
+    - Now whatever is inside requirements install them one by one if they are less
+        - Example
+            ```
+            pip3 install requests
+            ```
+    - After everything is set then run following code in virtual environment
+        ```
+        python3 gitGraber.py -k wordlists/keywords.txt -q "tesla" -s
+        ```
