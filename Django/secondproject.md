@@ -11,6 +11,7 @@
     ```
 
 **Use following to check installed content**
+
     ```
     pip freeze
     ```
