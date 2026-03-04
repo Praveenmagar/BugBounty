@@ -1,6 +1,6 @@
 # Creating Django project
 
-## First Step:
+## First Step: Creating virtual Environment
 - Everytime create Virtual Environment for all project
 - To create Virtual Environment, We just need to activate it because it is already installed inside python
     ```
@@ -12,8 +12,12 @@
 
 **Use following to check installed content**
 
-    ```
-    pip freeze
-    ```
+```
+pip freeze
+```
 
-## Second Step
+## Second Step: Installing django framework
+- To install it
+    ```
+    pip install django
+    ```
