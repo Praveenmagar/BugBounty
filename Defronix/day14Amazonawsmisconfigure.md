@@ -110,7 +110,9 @@
         inurl:/s3.amazonaws.com ext:xml intext:index of -site:github.com
         ```
 
+
 **Searching in Google**
+
     ```
     https://github.com/Proviesec/google-dorks/blob/main/google-dorks-for-finding-aws-s3.txt
     ```
