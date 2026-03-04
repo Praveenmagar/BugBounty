@@ -18,3 +18,62 @@
      ```
     - How to copy content to our desktop
     ![Screenshot](../images/Defronix/awsbucket.png)
+
+
+**Using tools to find leaked buckets**
+
+- **lazys3**
+        ```
+        https://github.com/nahamsec/lazys3
+        ```
+    - Now clone the content
+         ```
+        git clone https://github.com/nahamsec/lazys3.git
+        ```
+    - go inside it
+        ```
+        cd lazys3
+        ```
+    - Run this
+        ```
+        ruby lazys3.rb tesla
+        ```
+
+
+- **S3Scanner**
+    ```
+    https://github.com/sa7mon/S3Scanner
+    ```
+    - Now type
+        ```
+        s3scanner -h
+        ```
+    - to put bucket inside s3scanner file lets search bucket in github
+        ```
+        aws s3 bucket wordlists github
+        ```
+    - lets download one raw list.txt of wordlists in terminal
+        ```
+        wget 
+        https://raw.githubusercontent.com/koaj/aws-s3-bucket-wordlist/refs/heads/master/list.txt
+        ```
+    - Now start hunting
+        ```
+        s3scanner -bucket-file list.txt -enumerate
+        ```
+    - Or to get only bucket with READ
+        ```
+        s3scanner -bucket-file list.txt -enumerate | grep READ
+        ```
+    - Or to write
+        ```
+        s3scanner -bucket-file list.txt -enumerate | grep WRITE
+        ```
+    - Now whatever you will get go to google url and paste
+        ```
+        https://tesla.s3.amazonaws.com/
+        ```
+        - Example if you get marketing then
+            ```
+            https://marketing.s3.amazonaws.com/
+            ```
