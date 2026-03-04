@@ -113,6 +113,6 @@
 
 **Searching in Google**
 
-    ```
-    https://github.com/Proviesec/google-dorks/blob/main/google-dorks-for-finding-aws-s3.txt
-    ```
+```
+https://github.com/Proviesec/google-dorks/blob/main/google-dorks-for-finding-aws-s3.txt
+```
