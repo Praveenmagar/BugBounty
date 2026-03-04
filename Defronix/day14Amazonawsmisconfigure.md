@@ -77,3 +77,40 @@
             ```
             https://marketing.s3.amazonaws.com/
             ```
+
+
+
+**Using Website to find buckets**
+- One of the popular website mostly used by bughunters
+    ```
+    https://buckets.grayhatwarfare.com/
+    ```
+- Go and search content here in search field like
+    ```
+    *.backup*
+    ```
+
+    ```
+    username password
+    ```
+
+    ```
+    netflix user
+    ```
+- and many more
+
+
+**Next go to google hacking database**
+- Search 
+    ```
+    aws s3
+    ```
+    - Now copy one of the dorks and go to google and search
+        ```
+        inurl:/s3.amazonaws.com ext:xml intext:index of -site:github.com
+        ```
+
+**Searching in Google**
+    ```
+    https://github.com/Proviesec/google-dorks/blob/main/google-dorks-for-finding-aws-s3.txt
+    ```
