@@ -116,3 +116,22 @@
 ```
 https://github.com/Proviesec/google-dorks/blob/main/google-dorks-for-finding-aws-s3.txt
 ```
+
+
+
+## Some popular subdomains
+```
+https://github.com/bitquark/dnspop/blob/master/results/bitquark_20160227_subdomains_popular_10000
+```
+- Now lets download it
+    ```
+    wget https://raw.githubusercontent.com/bitquark/dnspop/refs/heads/master/results/bitquark_20160227_subdomains_popular_10000
+    ```
+- After downloading it lets go to lazys3
+    ```
+    cd lazys3
+    ```
+- Add bitquark value to commonbucket list of lazys3
+    ```
+     cat /root/bitquark_20160227_subdomains_popular_10000 >> common_bucket_prefixes.txt
+    ```
