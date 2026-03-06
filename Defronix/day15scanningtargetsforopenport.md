@@ -135,3 +135,35 @@
     ```
     mapcidr -cidr applecidr.txt | dnsx -ptr -resp-only
     ```
+
+    ```
+    subfinder -silent -d hackerone.com | dnsx -silent  -asn
+    ```
+
+
+## Another tool is naabu
+```
+https://github.com/projectdiscovery/naabu
+```
+- To install
+    ```
+    go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
+    ```
+- To run
+    ```
+    naabu -h
+    ```
+    ```
+    naabu -host apple.com
+    ```
+    ```
+    naabu -host apple.com -tp 1000
+    ```
+    ```
+    naabu -l appleips.txt
+    ```
+
+## MASSCAN: another powerful tool
+```
+https://github.com/robertdavidgraham/masscan
+```
