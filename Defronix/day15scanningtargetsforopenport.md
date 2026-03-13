@@ -167,3 +167,26 @@ https://github.com/projectdiscovery/naabu
 ```
 https://github.com/robertdavidgraham/masscan
 ```
+- To execute this
+    ```
+    masscan -p 0-65535 57.102.0.0/16 --rate=50000
+    ```
+- or
+    ```
+     masscan -p 0-1023 57.102.0.0/16 --rate=50000
+     ```
+
+
+## RUSTSCAN tool
+```
+https://github.com/bee-san/RustScan
+```
+- command
+    ```
+    rustscan -a appleip.txt -u 10000
+    ```
+
+    ```
+    rustscan -a 'tesla.com' -u 10000
+    ```
+    
