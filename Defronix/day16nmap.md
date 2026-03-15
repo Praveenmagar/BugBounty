@@ -112,9 +112,31 @@ becomes possible
 # Host discovery using ICMP
 - Ping every IP address on a target network and see who would respond to our ping (ICMP Type 8/Echo) requests with a ping reply (ICMP Type 0)
 - New windows uses host firewall to block ICMP echo bydefault
+- **ARP query precedes an ICMP request if your target is on the same subnet**
 - ICMP echo request to discover live hosts
     ```
     nmap -PE -sn MACHINE_IP/24
     ```
+- Scanning above in same or different subnet result will be same with only one difference
+    - Same subnet: result with MAC address
+    - Different subnet: result without MAC address
 
     ![Screenshot](../images/nmapicmp.png)
+
+- Result in wireshark
+    ![Screenshot](../images/nmapicmpwireshark.png)
+
+- Mostly ICMP is blocked, So try ICMP timestamp request (ICMP Type 13) and with Timestamp reply (ICMP Type 14)
+    ```
+    nmap -PP -sn target_ip/24
+    ```
+
+    ![Screenshot](../images/nmapicmptimestamp.png)
+
+    ![Screenshot](../images/nmapicmptimewireshark.png)
+
+-  mask queries (ICMP Type 17) and checks whether it gets an address mask reply (ICMP Type 18)
+
+    ![Screenshot](../images/nmapicmpmask.png)
+
+    ![Screenshot](../images/nmapicmpmaskwiresh.png)
