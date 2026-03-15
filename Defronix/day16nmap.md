@@ -40,12 +40,12 @@ becomes possible
     ```
     nmap -sL TARGETS
     ```
-- How many IP addresses will Nmap scan if you provide the following range 10.10.0-255.101-125? 
+- **How many IP addresses will Nmap scan if you provide the following range 10.10.0-255.101-125?** 
     ```
     nmap -sL 10.10.0-255.101-125
     ```
 
-- What is the first IP address Nmap would scan if you provided 10.10.12.13/29 as your target?
+- **What is the first IP address Nmap would scan if you provided 10.10.12.13/29 as your target?**
     ```
     nmap -sL -n 10.10.12.13/29
     ```
