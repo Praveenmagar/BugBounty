@@ -62,7 +62,7 @@ becomes possible
 - For network scanning, a scanner can send a specially crafted packet to common TCP or UDP ports to check whether the target responds. 
 - This method is efficient, especially when ICMP Echo is blocked
 
-### Nmap host discovery using ARP
+# Nmap host discovery using ARP
 - Privileged user scan on local network(Ethernet), Nmap uses ARP request
 - Privileged user on outside local network, Nmap uses ICMP echo request, TCP ACK to port 80, TCP SYN to 443 and ICMP timestamp request
 - Unprovileged user on outside local network, Nmap resorts to TCP three way handshake
@@ -74,7 +74,8 @@ becomes possible
     nmap -sn TARGETS
     ```
 
-## To get MAC address, OS send ARP query
+**To get MAC address, OS send ARP query**
+**A host that replies to ARP queries is up**
 
 - **to perform an ARP scan without port-scanning**
     ```
@@ -84,3 +85,36 @@ becomes possible
     ```
     nmap -PR -sn MACHINE_IP/24
     ```
+
+## ARP scan tool
+- provides many options to customise your scan
+- send ARP queries to all valid IP addresses on your local networks
+    ```
+    arp-scan --localnet
+    ```
+- OR
+    ```
+    arp-scan -l
+    ```
+
+- Among multiple interface, you want to scan only one
+    ```
+    sudo arp-scan -I eth0 -l
+    ```
+- To scan subnet
+    ```
+    sudo arp-scan 10.10.210.6/24
+    ```
+
+##  we can see using tcpdump, Wireshark to see ARP Query
+
+
+# Host discovery using ICMP
+- Ping every IP address on a target network and see who would respond to our ping (ICMP Type 8/Echo) requests with a ping reply (ICMP Type 0)
+- New windows uses host firewall to block ICMP echo bydefault
+- ICMP echo request to discover live hosts
+    ```
+    nmap -PE -sn MACHINE_IP/24
+    ```
+
+    ![Screenshot](../images/nmapicmp.png)
