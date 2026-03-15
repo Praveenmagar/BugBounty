@@ -7,13 +7,6 @@
     - Service and version detection
     - OS detection
 
-- Ways for Host Discovery
-    - Using ARP request packet
-    - Sending TCP packet
-    - Sending UDP packet
-    - Sending ICMP packet
-
-
 - **States of Port**
     - Open
         - Some service is running
@@ -49,3 +42,10 @@ becomes possible
     ```
     nmap -sL -n 10.10.12.13/29
     ```
+
+## Discovering live hosts
+- ARP from Link Layer
+- ICMP from the Network Layer
+- TCP from the Transport Layer
+- UDP from the Transport Layer
+
