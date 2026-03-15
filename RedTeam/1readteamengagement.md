@@ -88,3 +88,11 @@
             - Communications plan
             - Rules of Engagement (optional)
 
+
+    - **Mission Plan**
+        - Minimum detail should be include with this plan are
+            - Objectives
+            - Operators
+            - Exploits/Attacks
+            - Targets (users/machines/objectives)
+            - Execution plan variations
