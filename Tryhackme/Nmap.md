@@ -1,25 +1,4 @@
-# Nmap for Bug bounty
-
-- used for
-    - Enumeration
-    - Host discovery
-    - Find open Ports
-    - Service and version detection
-    - OS detection
-
-- **States of Port**
-    - Open
-        - Some service is running
-    - Close
-        - No service
-    - Filtered
-        - nmap doesn't know it is close or open due to firewall
-    - Unfiltered
-        - port is accessible but nmap doesn't know whether port is open or close
-    - Open|filtered
-        - nmap doesn't know open or filtered
-    - Close|filtered
-        - nmap doesn't know close or filtered
+# Nmap
 
 - In same subnet, expect scanner to use ARP Address Resolution Protocol (ARP) queries to discover live hosts.
 ## ARP scan only possible in same subnet
@@ -140,3 +119,43 @@ becomes possible
     ![Screenshot](../images/nmapicmpmask.png)
 
     ![Screenshot](../images/nmapicmpmaskwiresh.png)
+
+
+## Host discovery using TCP and UDP
+- **TCP SYN Ping**
+    - open port reply SYN/ACK (Acknowledge)
+    - closed port reply RST (Reset)
+        ```
+        nmap -PS -sn MACHINE_IP/24
+        ```
+    - Privileged user: No three way TCP handshake for open port
+    - Unprivileged user: Require three way TCP handshake
+
+- **TCP ACK Ping**
+    - Must be privileged user for this.
+    - For unprivileged user, need attempt a 3-way handshake.
+        ```
+        sudo nmap -PA -sn MACHINE_IP/24
+        ```
+    
+- **UDP ping**
+
+    ![Screenshot](../images/udpping.png)
+
+## MASSSCAN
+- uses a similar approach to discover the available system
+    ```
+    masscan MACHINE_IP/24 -p443
+    ```
+
+    ```
+    masscan MACHINE_IP/24 -p80,443
+    ```
+
+    ```
+    masscan MACHINE_IP/24 -p22-25
+    ```
+
+    ```
+    masscan MACHINE_IP/24 ‐‐top-ports 100
+    ```
