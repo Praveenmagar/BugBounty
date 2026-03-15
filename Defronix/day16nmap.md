@@ -80,7 +80,7 @@ becomes possible
     ```
     nmap -PR -sn TARGETS
     ```
-        - PR means you only want ARP scan
+    - PR means you only want ARP scan
     ```
     nmap -PR -sn MACHINE_IP/24
     ```
