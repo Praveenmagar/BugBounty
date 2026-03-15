@@ -49,3 +49,10 @@ becomes possible
 - TCP from the Transport Layer
 - UDP from the Transport Layer
 
+### ARP
+- Send frame to the broadcast address on the network segment and asking the computer with a specific IP address to respond by providing its MAC address
+
+### ICMP
+- It has many types. 
+- ICMP ping uses Type 8 (Echo) and Type 0 (Echo Reply).
+- To ping on the same subnet, an ARP query should precede the ICMP Echo.
