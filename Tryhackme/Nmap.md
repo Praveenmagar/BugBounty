@@ -1,5 +1,12 @@
 # Nmap
 
+- Nmap Live Host Discovery
+- Nmap Basic Port Scans
+- Nmap Advanced Port Scans
+- Nmap Post Port Scans
+
+
+# Nmap Live Host Discovery
 - In same subnet, expect scanner to use ARP Address Resolution Protocol (ARP) queries to discover live hosts.
 ## ARP scan only possible in same subnet
 - ARP query aims to obtain the hardware address (MAC address) so that communication at the link layer
@@ -159,3 +166,58 @@ becomes possible
     ```
     masscan MACHINE_IP/24 ‐‐top-ports 100
     ```
+
+# Some important options
+- no DNS lookup 
+    ```
+    -n
+    ```
+- Reverse DNS lookup for all hosts
+    ```
+    -R
+    ```
+- host discovery only
+    ```
+    -sn
+    ```
+
+
+# Nmap Basic Port Scans
+
+## TCP flags
+
+![Screenshot](../images/tcpflags.png)
+
+- URG 
+    - Urgent pointer indicates incoming data is urgent, and processed immediately without consideration of having to wait on previously sent TCP segments
+- ACK 
+    - acknowledge the receipt of a TCP segment.
+- PSH: 
+    - Ask TCP to pass the data to the application promptly.
+- RST: 
+    - Used to reset the connection. 
+    - firewall, might send it to tear a TCP connection. 
+    - used when data is sent to a host and there is no service on the receiving end to answer.
+- SYN: 
+    - Used to initiate a TCP 3-way handshake and synchronize sequence numbers with the other host. 
+    - Sequence number should be set randomly during TCP connection establishment.
+- FIN: 
+    - The sender has no more data to send.
+
+## TCP connect Scan
+- Learning whether the TCP port is open, not establishing a TCP connection. Hence the connection is torn as soon as its state is confirmed by sending a RST/ACK. You can choose to run TCP connect scan using -sT.
+
+    ![Screenshot](../images/tcpopen.png)
+
+- For non-privileged user, a TCP connect scan is the only possible option to discover open TCP ports.
+
+- TCP SYN flag set to various ports, 256, 443, 143, and so on.
+- By default, Nmap will attempt to connect to the 1000 most common ports. 
+- Closed TCP port responds to a SYN packet with RST/ACK to indicate that it is not open.
+
+    ![Screenshot](../images/tcpscanwireshark.png)
+
+- Here, port 143 open, so it replied with a SYN/ACK, and Nmap completed the 3-way handshake by sending an ACK.
+- Then, the fourth packet tears it down with an RST/ACK packet.
+
+    ![Screenshot](../images/tcpthreeway.png)
