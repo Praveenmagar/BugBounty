@@ -232,3 +232,64 @@ becomes possible
 
 - Compare between SYN and connect
     ![Screenshot](../images/comparesynconn.png)
+
+# UDP scan
+- Require no handshake
+- We cannot guarantee that a service listening on a UDP port would respond to our packets.
+- However, if a UDP packet is sent to a closed port, an ICMP port unreachable error (type 3, code 3) is returned
+
+    ![Screenshot](../images/udpopen.png)
+
+    ![Screenshot](../images/Udpclose.png)
+
+# Fine tuning scope
+- Port list
+    ```
+    -p22,80,443
+    ```
+- Port range
+    ```
+    -p1-1023
+    ```
+- Scan all ports
+    ```
+    -p-
+    ```
+- To control scan time
+    ```
+    -T<0-5>
+    ```
+    - paranoid (0)
+    - sneaky (1)
+    - polite (2)
+    - normal (3)
+    - aggressive (4)
+    - insane (5)
+        - T0 is slowest
+        - T5 is fastest
+        - To avoid IDS alert use T0 or T1
+        - T0 scans one port at a time and waits 5 minutes between sending each probe, so you can guess how long scanning one target would take to finish
+        - Normal T3
+        - T5 most aggressive and effect accuracy due to data lost
+        - T4 used during practice and in CTF
+        - -T1 is often used during real engagements where stealth is more important
+    - Control packet using
+        ```
+        --max-rate 10
+        ```
+        ```
+        --max-rate=10
+        ```
+    - control probing parallelization
+        ```
+        --min-parallelism <numprobes>
+        ```
+        ```
+        --max-parallelism <numprobes>
+        ```
+
+- Scan most common 100 ports
+    ```
+    -F
+    ```
+    
