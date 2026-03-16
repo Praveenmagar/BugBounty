@@ -221,3 +221,14 @@ becomes possible
 - Then, the fourth packet tears it down with an RST/ACK packet.
 
     ![Screenshot](../images/tcpthreeway.png)
+
+
+# TCP SYN SCAN
+- Unprivileged users are limited to connect scan. 
+- Default scan mode is SYN scan, and it requires a privileged user.
+- SYN scan does not need to complete the TCP 3-way handshake; instead, it tears down the connection once it receives a response from the server
+
+    ![Screenshot](../images/tcpsynscan.png)
+
+- Compare between SYN and connect
+    ![Screenshot](../images/comparesynconn.png)
