@@ -223,7 +223,7 @@ becomes possible
     ![Screenshot](../images/tcpthreeway.png)
 
 
-# TCP SYN SCAN
+## TCP SYN SCAN
 - Unprivileged users are limited to connect scan. 
 - Default scan mode is SYN scan, and it requires a privileged user.
 - SYN scan does not need to complete the TCP 3-way handshake; instead, it tears down the connection once it receives a response from the server
@@ -233,7 +233,7 @@ becomes possible
 - Compare between SYN and connect
     ![Screenshot](../images/comparesynconn.png)
 
-# UDP scan
+## UDP scan
 - Require no handshake
 - We cannot guarantee that a service listening on a UDP port would respond to our packets.
 - However, if a UDP packet is sent to a closed port, an ICMP port unreachable error (type 3, code 3) is returned
@@ -242,7 +242,7 @@ becomes possible
 
     ![Screenshot](../images/Udpclose.png)
 
-# Fine tuning scope
+## Fine tuning scope
 - Port list
     ```
     -p22,80,443
@@ -293,3 +293,47 @@ becomes possible
     -F
     ```
     
+
+# NMAP advance port scan
+
+## TCP NULL scan
+- Does not set any flag
+- All six flag bits are set to zero
+    ```
+    nmap -sN target
+    ```
+    ![Screenshot](../images/null.png)
+
+    ![Screenshot](../images/null1.png)
+
+## FIN scan
+-  Sends a TCP packet with the FIN flag set
+    ```
+    nmap -sF target
+    ```
+    ![Screenshot](../images/fin1.png)
+
+    ![Screenshot](../images/fin2.png)
+- Some firewalls will 'silently' drop the traffic without sending an RST.
+
+## XMAS scan
+-  Sets the FIN, PSH, and URG flags
+    ```
+    nmap -sX target
+    ```
+- Like the Null scan and FIN scan, if an RST packet is received, it means that the port is closed.
+- Otherwise, it will be reported as open|filtered
+- Three scan types is efficient when scanning a target behind a stateless .
+- Stateless will check if the incoming packet has the SYN flag set to detect a connection attempt.
+- Using a flag combination that does not match the SYN packet makes it possible to deceive the and reach the system behind it.
+- However, a stateful will practically block all such crafted packets and render this kind of scan useless.
+
+## Maimon Scan
+- FIN and ACK bits are set
+- target send an RST packet as a response
+- scan won’t work on most targets encountered in modern networks
+    ```
+    nmap -sM target
+    ```
+
+    ![Screenshot](../images/maimon.png)
