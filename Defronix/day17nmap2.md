@@ -81,4 +81,37 @@ cd /usr/share/nmap/scripts
     ```
     - this open cli for sandbox
 
+    ```
+    list
+    ```
+    - to see modules
+
+    ```
+    show port_scan
+    ```
+    - To see module info
+
+    ```
+    use port_scan
+    ```
+    - To use port_scan
+
+    ```
+    show
+    ```
+    - To see its content
+
+    ```
+    set dest ipaddress
+    ```
+    - To set target ip
+
+
+    ```
+    init null_scan
+    ```
+    OR
+    ```
+    init 4
+    ```
     
