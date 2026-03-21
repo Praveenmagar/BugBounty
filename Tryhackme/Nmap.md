@@ -337,3 +337,10 @@ becomes possible
     ```
 
     ![Screenshot](../images/maimon.png)
+
+## TCP ACK scan
+- ACK flag is set
+    ```
+    nmap -sA target
+    ```
+    
