@@ -401,3 +401,101 @@ becomes possible
     nmap -D 10.10.0.1,10.10.0.2,RND,RND,attacker_ip
     ```
     - Where RND will automatically takes random IP
+
+
+## Fragmented Packets
+- Firewall
+    -  Piece of software or hardware that permits packets to pass through or blocks them based on firewall rule
+    - Traditional firewall inspects, the IP header and the transport layer header.
+    - More sophisticated firewall would also try to examine the data carried by the transport layer.
+
+- IDS
+    -  Inspects network packets for select behavioural patterns or specific content signatures and raise alert for malicious rule
+    - Along with IP header and transport layer header,It inspects the data contents in the transport layer and check if it matches any malicious patterns
+
+**How can you prevent NMAP activity to detect from Firewall/IDS?**
+- It is not so easy to do this but you can benefit by dividing packet into smaller packet
+
+**How to fragment it?**
+- Using 
+    ```
+    -f
+    ```
+    - Divides into 8 bytes or less
+- Using
+    ```
+    -f -f
+    ```
+    Or
+    ```
+    -ff
+    ```
+    - Divides into 16 byte instead of 8 byte
+
+- You can change default value by
+    ```
+    --mtu
+    ```
+    - But always should be in multiple of 8
+- Without fragment
+    ```
+    sudo nmap -sS -p80 10.20.30.144
+    ```
+    
+- with fragment
+    ```
+    sudo nmap -sS -p80 -f 10.20.30.144
+    ```
+
+## Idle/Zombie Scan
+- Spoofing source IP can be great approach to stealth scan but will work in specific network because monitor network traffic is required
+- So, give it an upgrade with the idle scan
+- It requires an idle system(like printer) connected to the network that you can communicate with
+
+    ![Screenshot](../images/zoombie1.png)
+
+- Nmap make each probe coming from idle host and check whether idle host received any response
+    ```
+    nmap -sI ZOMBIE_IP MACHINE_IP
+    ```
+    - Where ZOMBIE_IP is ip of idle machine(like printer)
+
+- Three scenario
+    - For closed port
+
+        ![Screenshot](../images/zoombiefirst.png)
+    
+    - For open port
+
+        ![Screenshot](../images/zoombiesecond.png)
+
+    - For firewall
+        -  target machine does not respond due to firewall rules and same result as with the closed port
+
+## More details during scan
+- More details regarding its reasoning and conclusions
+    ```
+    sudo nmap -sS --reason Ipaddress
+    ```
+- Debuggine
+    ```
+    -d
+    ```
+- More details for debugging
+    ```
+    -dd
+    ```
+
+- For OS detection
+    ```
+    sudo nmap -sS -O MACHINE_IP
+    ```
+- For traceroute detection
+    ```
+    sudo nmap -sS --traceroute MACHINE_IP
+    ```
+- Saving output
+    - The three main formats are:
+        - Normal
+        - Grepable (grepable)
+        - XML

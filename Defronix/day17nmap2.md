@@ -152,3 +152,20 @@ cd /usr/share/nmap/scripts
         https://github.com/johnnyxmas/ScanCannon
         ```
     
+        ```
+        cd ScanCannon
+        ```
+    - Inside ScanCannon there is cidr.txt file now lets send our previous target cidr range here
+        ```
+        cat ~/apple/applecidr.txt > cidr.txt
+        ```
+
+    - Now lets check it
+        ```
+        cat cidr.txt | wc -l
+        ```
+    - You need to run this from inside ScanCannon folder to execute it
+        ```
+        ./scancannon.sh cidr.txt
+        ```
+        
