@@ -344,3 +344,30 @@ becomes possible
     nmap -sA target
     ```
     
+    ![Screenshot](../images/tcpscansync.png)
+
+- Here, identifying open port is difficult
+- Useful when there is firewall to learn which port are not blocked by firewall
+- Try to perfrom this attack repeatedly
+
+## Window Scan
+- Similar to ACK scan
+
+    ![Screenshot](../images/windowsacn.png)
+
+- if we repeat scan against a server behind a firewall , we expect to get more satisfying results
+
+## Custom Scan
+- Used to combine TCP flags
+    ```
+    nmap --scanflags RSTSYNFIN target
+    ```
+    - This set SYN, RST, and FIN simultaneously
+
+- **Remember that firewall is not blocking a specific port,does not mean that a service is listening on that port.There is possibility firewall rules need to be updated to reflect recent service changes. Hence, ACK and window scans are exposing the firewall rules, not the services.**
+
+## Spoofing and Decoys
+- Some network setup allows scan target using spoofed IP and even spoofed MAC
+- Scanning random network with spoof IP, high chances no response
+
+    ![Screenshot](../images/spoofedip.png)

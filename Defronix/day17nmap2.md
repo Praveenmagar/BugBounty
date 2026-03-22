@@ -86,6 +86,11 @@ cd /usr/share/nmap/scripts
     list
     ```
 
+    - to clear content
+    ```
+    clear
+    ```
+
     - To see module info
     ```
     show port_scan
@@ -106,6 +111,7 @@ cd /usr/share/nmap/scripts
     set dest ipaddress
     ```
 
+    - To execute task
     ```
     init null_scan
     ```
@@ -114,3 +120,35 @@ cd /usr/share/nmap/scripts
     init 4
     ```
 
+    - To go back type
+    ```
+    main
+    ```
+
+    - To use service detection
+    ```
+    use service_detection
+    ```
+
+    - To see
+    ```
+    show
+    ```
+
+    - To set target
+    ```
+    set dest ipaddress
+    ```
+
+    - To execute action
+    ```
+    init 1
+    ```
+
+
+- Next Tool 
+    - Scancannon
+        ```
+        https://github.com/johnnyxmas/ScanCannon
+        ```
+    
