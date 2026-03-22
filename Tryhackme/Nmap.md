@@ -371,3 +371,33 @@ becomes possible
 - Scanning random network with spoof IP, high chances no response
 
     ![Screenshot](../images/spoofedip.png)
+
+- generally,specify network interface using -e and disable ping scan -Pn. 
+- Instead of 
+    ```
+    nmap -S SPOOFED_IP MACHINE_IP
+    ```
+    - use 
+    ```
+    nmap -e NET_INTERFACE -Pn -S SPOOFED_IP MACHINE_IP
+    ```
+    -  to tell explicitly which network interface to use and not to expect to receive a ping reply
+    - It is worth repeating that this scan will be useless if the attacker system cannot monitor the network for responses.
+
+- In same subnet, you can spoof MAC uing
+    ```
+    --spoof-mac SPOOFED_MAC
+    ```
+- Spoofing works only in some cases, 
+    - So, attacker might resort to using decoys to make it more challenging to be pinpointed by making scan appear to be coming from many IP addresses.So,attacker’s IP address would be lost among them
+
+    ![Screenshot](../images/decoy.png)
+
+    ```
+    nmap -D 10.10.0.1,10.10.0.2,attacker_ip
+    ```
+    OR
+    ```
+    nmap -D 10.10.0.1,10.10.0.2,RND,RND,attacker_ip
+    ```
+    - Where RND will automatically takes random IP
