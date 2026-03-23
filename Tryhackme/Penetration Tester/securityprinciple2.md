@@ -23,3 +23,22 @@
     -  It is used in organisations or situations where integrity is more important than confidentiality
 
         ![Screenshot](/images/bibamodel.png)
+
+
+
+## Threat modeling and incident response
+- Threat modelling is the process of reviewing, improving, and testing the security protocols in place in an organisation's information technology infrastructure and services.
+- A critical stage of the threat modelling process is identifying likely threats that an application or system may face, the vulnerabilities a system or application may be vulnerable to.
+- It is similar to a risk assessment made in workplaces for employees and customers. The principles all return to:
+    - Preparation
+    - Identification
+    - Mitigations
+    - Review
+
+- Complex process that needs constant review and discussion with a dedicated team need effective threat model 
+    - Threat intelligence
+    - Asset identification
+    - Mitigation capabilities
+    - Risk assessment
+
+
