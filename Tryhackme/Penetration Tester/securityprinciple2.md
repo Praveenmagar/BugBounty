@@ -41,4 +41,23 @@
     - Mitigation capabilities
     - Risk assessment
 
+- Frameworks used
+    - Spoofing identity, Tampering with data, Repudiation threats, Information disclosure, Denial of Service and Elevation of privileges(STRIDE)
+    - Process for Attack Simulation and Threat Analysis(PASTA)
 
+    - STRIDE
+
+        ![Screenshot](/images/stride.png)
+
+
+- Incident
+    - A breach of security is known as an incident.
+    - Despite all rigorous threat models and secure system designs, incidents do happen.
+    - Actions taken to resolve and remediate the threat are known as Incident Response (IR)
+
+        ![Screenshot](/images/incident.png)
+
+    - Incident is responded to by a Computer Security Incident Response Team(CSIRT)
+    - Six phases to solve incident
+
+        ![Screenshot](/images/incidnet.png)
