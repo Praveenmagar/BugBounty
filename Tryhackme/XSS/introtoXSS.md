@@ -36,15 +36,17 @@
 - alert
 
 
-## Reflected XSS
+##  1. Reflected XSS
 - Occurs when user-supplied data in an http request is included in the webpage source without any validation.
 
     ![Screenshot](/images/reflectedxss.png)
 
     ![Screenshot](/images/reflectedxss1.png)
 
-**How to test for Reflected?**
+**How to test for Reflected XSS?**
 - You'll need to test every possible point of entry; these include:
     - Parameters in the URL Query String
     - URL File Path
-    - Sometimes Headers (although unlikely exploitable in practice)
+    - Sometimes HTTP Headers (although unlikely exploitable in practice)
+
+## Stored XSS
