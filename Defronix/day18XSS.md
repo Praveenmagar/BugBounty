@@ -14,4 +14,8 @@
         
     - Go for different parameters in url
     
-
+# XSS types
+- Reflected XSS
+- Stored XSS
+- DOM XSS
+- Blind XSS
