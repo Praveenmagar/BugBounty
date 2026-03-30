@@ -66,3 +66,26 @@
             ```
             intitle:admin
             ```
+
+2. Wappalyzer
+    - It is an online tool and browser extension that helps identify what technologies a website uses, such as frameworks, Content Management Systems (CMS), payment processors and much more, and it can even find version numbers as well.
+
+3. Wayback machine
+    - It is a historical archive of websites that dates back to the late 90s.
+    - You can search a domain name, and it will show you all the times the service scraped the web page and saved the contents. 
+    - This service can help uncover old pages that may still be active on the current website
+        ```
+        https://web.archive.org/
+        ```
+
+4. Github
+
+5. S3buckets
+
+
+## Automated discovery
+    - Process of using tools to discover content rather than doing it manually
+    - Tools used
+        - ffuf
+        - gobuster
+        - dirbuster
