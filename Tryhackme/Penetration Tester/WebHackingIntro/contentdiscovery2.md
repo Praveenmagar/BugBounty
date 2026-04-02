@@ -84,8 +84,8 @@
 
 
 ## Automated discovery
-    - Process of using tools to discover content rather than doing it manually
-    - Tools used
-        - ffuf
-        - gobuster
-        - dirbuster
+- Process of using tools to discover content rather than doing it manually
+- Tools used
+    - ffuf
+    - gobuster
+    - dirbuster

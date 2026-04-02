@@ -36,3 +36,8 @@
         ```
 
         ![Screenshot](/images/pathtraversal2.png)
+
+2. Local File Inclusion
+    - Occurs due to a developers' lack of security awareness
+    - With PHP, using functions such as include, require, include_once, and require_once often contribute to vulnerable web applications
+    - Also occur when using other languages such as ASP, JSP, or even in Node.js apps

