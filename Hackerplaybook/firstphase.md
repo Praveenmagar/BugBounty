@@ -85,3 +85,11 @@
     ```
     pipx install .
     ```
+- To run
+    ```
+    smbexec.py -h
+    ```
+    ```
+    psexec.py -h
+    ```
+    
