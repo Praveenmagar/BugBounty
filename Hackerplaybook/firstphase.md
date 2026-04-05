@@ -72,9 +72,16 @@
 - Use below command to execute
     ```
     sudo apt update
+    ```
+    ```
     sudo apt install git python3-pip pipx -y
+    ```
+    ```
     git clone https://github.com/fortra/impacket.git
+    ```
+    ```
     cd impacket
+    ```
+    ```
     pipx install .
     ```
-    
