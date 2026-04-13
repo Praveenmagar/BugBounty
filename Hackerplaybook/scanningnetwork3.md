@@ -28,6 +28,7 @@
     3. Spider foot
     - How to install it
         ```
+        cd Hackerplaybook
         git clone https://github.com/smicallef/spiderfoot.git
         cd spiderfoot
 
@@ -48,6 +49,23 @@
         ```
     - Here 0.0.0.0 means accessible from anywhere. So now use this URL in your local or host browser
         ```
-        http://72.61.245.140:5001
+        http://VPS_IP:5001
         ```
-
+    - How to set password in Spider Foot?
+        ```
+        mkdir -p /root/.spiderfoot
+        ```
+        ```
+        nano /root/.spiderfoot/passwd
+        ```
+        ```
+        praveen:1234
+        ```
+        - Where Username= praveen and password= 1234
+        ```
+        python3 sf.py -l 0.0.0.0:5001
+        ```
+        - Go to your local machine
+        ```
+        http://VPS_IP:5001
+        ```
