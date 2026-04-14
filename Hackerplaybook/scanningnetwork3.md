@@ -136,3 +136,23 @@
 
 
 # External/Internal Active Discovery
+
+- One of most effective scanning steps
+    1. Scanning with Masscan
+        -  Historically, we have all used nmap to map out IPs/Ports, but the game has been changing
+        -  Large ranges are a pain to scan, but this is where Masscan comes into play
+            ```
+            masscan -p0-65535 23.239.151.0/24 --rate 150000 -oL output.txt
+            ```
+        - Try to run same scan with nmap
+            ```
+            nmap -v -PN -n -sT -T5 23.239.151.0/24 -p0-65535 -oN output_nmap.txt
+            ```
+        - Masscan improves scanning significantly and allows a tester to scan and have results in minimal time
+        - Feature to configure your Masscan scans: --echo switch
+            ```
+            /masscan -p0-65535 23.239.151.0/24 --rate 150000 -oL output.txt --echo > scan.conf
+            ```
+            ```
+            cat scan.conf
+            ```
