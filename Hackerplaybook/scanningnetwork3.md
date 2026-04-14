@@ -127,7 +127,7 @@
     grep "@company.com" file.txt
     ```
 
-## Github - Analysis
+#### Github - Analysis
 1. Gitrob: it is already outdated. So other relevant tools are
     1. Trufflehog
     2. Gitdorker
