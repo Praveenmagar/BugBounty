@@ -137,7 +137,7 @@
 
 # External/Internal Active Discovery
 
-- One of most effective scanning steps
+#### One of most effective scanning steps
     1. Scanning with Masscan
         -  Historically, we have all used nmap to map out IPs/Ports, but the game has been changing
         -  Large ranges are a pain to scan, but this is where Masscan comes into play
