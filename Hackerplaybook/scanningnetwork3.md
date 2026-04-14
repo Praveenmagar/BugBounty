@@ -7,7 +7,7 @@
 4. Web Application Scanning
 
 
-## Open Source Intelligence (OSINT)- Passive Discovery
+# Open Source Intelligence (OSINT)- Passive Discovery
 - Tools
     1. Recon-NG: Not so relevant 
 
@@ -69,3 +69,70 @@
         ```
         http://VPS_IP:5001
         ```
+
+
+## Creating Password List
+- Finding more targeted information about the company, the people, the location, and their customers by developing more customized password list
+- Creating custom and smart word lists based on our victim companies and related industries
+
+**How to create best password list?**
+1. Understand the Target (MOST IMPORTANT)
+    - Start with OSINT:
+        - Website pages, About section, Careers page, Blog posts
+    - Extract: 
+        - Product names, Internal terms, Departments, Technologies
+
+2. Use CeWL
+    ```
+    sudo apt install cewl
+    ```
+    ```
+    cewl https://company.com -d 2 -w words.txt
+    ```
+3. Extract word from JS files
+    ```
+    curl -s https://company.com/app.js | grep -oE "[a-zA-Z0-9_/.-]+" | sort -u
+    ```
+4. Use GitHub Dorking (GitDorker)
+    ```
+    company.com password
+    company.com api
+    company.com secret
+    ```
+5. Manual Intelligence (VERY UNDERRATED)
+    - Look at: LinkedIn employees, Job descriptions
+
+**Small but smart wordlist > big but random wordlist**
+
+- Tools
+    1. Wordhound: not relevant today use cewl instead
+    2. BruteScrape: not relevant use cewl instead
+
+
+## Using Compromised Lists To Find Email Addresses And Credentials
+- Being a penetration tester you have to get creative and use all sorts of resources, just as if someone was malicious. 
+- One tactic: using known credential dumps for password reuse
+- Search using Linux grep
+    ```
+    nano file.txt
+    ```
+
+    ```
+    user1@yahoo.com:hash123
+    user2@company.com:hash456
+    admin@company.com:hash789
+    ```
+
+    ```
+    grep "@company.com" file.txt
+    ```
+
+## Github - Analysis
+1. Gitrob: it is already outdated. So other relevant tools are
+    1. Trufflehog
+    2. Gitdorker
+    3. Gitleaks
+    
+
+
+# External/Internal Active Discovery
