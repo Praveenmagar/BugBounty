@@ -71,7 +71,7 @@
         ```
 
 
-## Creating Password List
+#### Creating Password List
 - Finding more targeted information about the company, the people, the location, and their customers by developing more customized password list
 - Creating custom and smart word lists based on our victim companies and related industries
 
@@ -109,7 +109,7 @@
     2. BruteScrape: not relevant use cewl instead
 
 
-## Using Compromised Lists To Find Email Addresses And Credentials
+#### Using Compromised Lists To Find Email Addresses And Credentials
 - Being a penetration tester you have to get creative and use all sorts of resources, just as if someone was malicious. 
 - One tactic: using known credential dumps for password reuse
 - Search using Linux grep
