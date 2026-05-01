@@ -18,7 +18,7 @@
     1. You can manipulate it
     2. you can inspire it
 
-    1. Manipulate ways
+    - Manipulate ways
         - Price
         - Promotions
             - In business to business world, promotions are valled "value added"
