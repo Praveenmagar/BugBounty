@@ -156,3 +156,127 @@
             ```
             cat scan.conf
             ```
+
+    2. Scanning with sparta: it is already outdated so lets replace it with Legion
+        - Legion is bydefault installed inside kali linux. So here i am using vmware linux
+        - Always rung legion with  sudo
+            ```
+            sudo legion
+            ```
+    3. Scanning with httpscreenshot: it is already outdated. So replace with
+        - gowitness
+        - aquatone
+
+    - **Best Workflow for Scanning**
+        - Scan target
+            ```
+            masscan 192.168.1.0/24 -p80,443,8080,8443 --rate=1000 -oG masscan.txt
+            ```
+        - Extract required data
+            ```
+            grep open masscan.txt | awk '{print $2}' | sort -u > ips.txt
+            ```
+        - Check live url
+            ```
+            cat ips.txt | httpx -ports 80,443,8080,8443 -silent > web.txt
+            ```
+        - Take Screenshot
+            ```
+            gowitness scan file -f web.txt
+            ```
+    
+    #### Vulnerability Scan
+    - After performing initial scans and mapping out the network, I usually like to kick off a couple of vulnerability scans in the background
+    - Tools
+        1. Rapid7 Nexpose
+        2. Tenable Nessus
+        3. OpenVAS
+            - I have install OpenVAS in kali linux vmware. To open this go to linux and type
+                ```
+                sudo gvm-start
+                ```
+            - and open the following URL
+                ```
+                https://127.0.0.1:9392
+                ```
+            - and put the username as admin and put password 
+
+
+# Web application Scanning
+- After I start the network scanners and get a layout with the active discovery tools, I begin my web
+application scanners
+- There are lot of open source tools for web scanning like
+    - ZAP, 
+    - WebScarab, 
+    - Nikto, 
+    - w3af
+- But we are going for Burpsuite
+
+    #### The Process For Web Scanning
+    - Spider/Discovery/Scanning with Burp Pro
+    - Scanning with a web application scanner
+    - Manual parameter injection
+    - Session token analysis
+
+- After running a tool like Nessus or Nexpose to find the common system/application/service
+vulnerabilities, it is time to dig into the application
+- Content Discovery
+    - Go to target
+    - sitemap
+    -  URL view
+    - Right click in url and go to engagement tool
+    - Select content discovery
+    - click on the "Session is not running" button and the application will start "smart brute forcing" folders
+    
+ 
+ # The Drive - Exploiting Scanner Findings
+
+ #### 1. Metasploit
+
+ #### 2. Scripts
+    - Many exploits for vulnerabilities are not in Metasploit
+    - Scripts/codes will be written in Python, C++, Ruby, Perl, Bash, or some other type of scripting language
+    - As a penetration tester, you need to be familiar with how to edit, modify, execute, and understand the scripts/codes regardless of the language and be able to understand why an exploit works
+
+**Note: Always execute script only after testing because After the script exploits the vulnerability, the payload deletes everything on the vulnerable host**
+
+#### 3. Printers
+- Going from low to owning the network. Favorite examples is printers mainly multi-function printers(MFP)
+
+
+## Nosqlmap
+
+
+## Elastic search
+- I have installed it in vmware kali linux
+- At first 
+    ```
+    cd ~/elastic-lab
+    ```
+- Now start it
+    ```
+    docker-compose up -d
+    ```
+- To stop server
+    ```
+    docker-compose down
+    ```
+- After starting check status
+    ```
+    docker ps
+    ```
+
+- After starting go to browser and type for elastic search
+    ```
+    http://localhost:9200
+    ```
+- You can verify it using curl
+    ```
+    curl http://localhost:9200
+    ```
+- For Kibana
+    ```
+    http://localhost:5601
+    ```
+
+page 127

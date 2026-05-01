@@ -1,5 +1,28 @@
 # Metasploitable 2
 
+- Start postgresql
+    ```
+    service postgresql start
+    ```
+
+- Start postgresql on boot
+    ```
+    update-rc.d postgresql enable
+    ```
+
+- Start and stop metasploit
+    ```
+    service metasploit start
+    msfconsole
+    exit
+    service metasploit stop
+    ```
+
+- Log everything to /root/msf_console.log
+    ```
+    echo "spool /root/msf_console.log" > /root/.msf4/msfconsole.rc
+
+
 # Unix Basics
 
 ## Rlogin (512,513,514)

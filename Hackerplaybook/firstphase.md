@@ -92,4 +92,32 @@
     ```
     psexec.py -h
     ```
+
+4. Trufflehog( Instead of Gitrob)
+- To install
+    ```
+    curl -sSfL https://raw.githubusercontent.com/trufflesecurity/trufflehog/main/scripts/install.sh | sudo sh -s -- -b /usr/local/bin
+    ```
+- Check
+    ```
+    trufflehog -h
+    ```
     
+5. WPScan
+- Industry standard
+- Detects:
+    - Plugins
+    - Themes
+    - Known vulnerabilities
+- Used in real bug bounty
+- This tool is bydefault available in linux
+
+
+6. Nuclei
+- Uses templates for:
+    - CMS detection
+    - Known vulns
+    - Misconfigurations
+
+7. Eyewitness
+- Use httpx or gowitness in place of this
