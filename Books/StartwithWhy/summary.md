@@ -18,6 +18,7 @@
     1. You can manipulate it
     2. you can inspire it
 
+
     - Manipulate ways
         - Price
         - Promotions
@@ -33,3 +34,7 @@
             - Everyone choose cheaper, quicker option over the better long-term solution
         - Peer pressure
             - It works not because the majority or the experts are always right, but because we fear that we may be wrong.
+        - Novelty
+            - Company confused novelty(being like new) with innovation(new ideas like tesla electric car)
+            - Novelty are added in an attempt to differentiate, but not reinvent.
+        
