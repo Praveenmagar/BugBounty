@@ -37,4 +37,5 @@
         - Novelty
             - Company confused novelty(being like new) with innovation(new ideas like tesla electric car)
             - Novelty are added in an attempt to differentiate, but not reinvent.
+            page 26
         
