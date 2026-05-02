@@ -10,4 +10,4 @@
 
 **We almost never run a vulnerability scan against the internal network because  are very loud on the network and will most likely get caught in today’s world**
 
-![Screenshot](/images/redteamvspentest.png)
+ ![Screenshot](/images/redteamvspentest.png)
