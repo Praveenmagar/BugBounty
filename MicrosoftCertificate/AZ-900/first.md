@@ -21,3 +21,7 @@
     3. PaaS: being a middle ground between IaaS and SaaS, rests somewhere in the middle and evenly distributes responsibility between the cloud provider and the consumer.
 
     ![Screenshot](/images/shared-responsibility-model.png)
+
+
+## Cloud Deployment Model
+![Screenshot](/images/cloud-deployment-models.png)
