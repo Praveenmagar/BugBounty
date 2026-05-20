@@ -19,4 +19,4 @@
 
 - Investment isn’t about being sexy—it’s about making money, and when you look at investment literature, buy-and-hold investing wins over the long term, every time
 
-page 38
+page 41
