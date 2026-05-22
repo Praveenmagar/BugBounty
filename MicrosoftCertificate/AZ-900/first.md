@@ -49,3 +49,61 @@
         - refers to ongoing spending on services over time.
 
     ![Screenshot](/images/capacity-planning-comparison.png)
+
+
+
+## During cloud deployment two important factor are
+1. Uptime or availability
+2. Ability to handle demand or scale
+
+1. Highly availability
+- Service level Agreements(SLAs)
+    - It is formal agreement between Service provider and customer that guarantees customer a stated level of service
+    - Example:
+        - for 99% : 3.65 days/year downtime
+        - for 99.9% : 8.76 hours/year downtime
+        - for 99.99% : 52.6 min/year downtime
+        - 100% uptime is difficult and expensive to achieve because it allows no time for taking service down for maintenance, backuptime and duplicating component
+
+
+2. Scalability:
+
+![Screenshot](/images/scalability.png)
+
+
+3. Reliability
+
+![Screenshot](/images/reliability.png)
+
+
+4. Predictability
+
+![Screenshot](/images/predictability.png)
+
+- Here two parameter
+    - Performance:
+        -  focuses on predicting the resources needed to deliver a positive experience for your customers
+        - Require more or less resources : autoscaling will automatically deploy it
+        - Heavy traffic: load balancing redirect some of overload to less stressed area
+
+    - Cost
+        - focused on predicting the cost of the cloud spend.
+        -  You can use tools like the Azure Pricing Calculator to get an estimate of potential cloud spend.
+
+
+
+## Security and Governance in Cloud
+
+![Screenshot](/images/security-governance.png)
+
+
+## Manageability in cloud
+- Two types
+    1. Management of cloud
+
+    ![Screenshot](/images/management-of-cloud.png)
+
+    2. Management in cloud
+
+    ![Screenshot](/images/management-in-cloud.png)
+    
