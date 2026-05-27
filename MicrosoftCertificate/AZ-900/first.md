@@ -106,4 +106,50 @@
     2. Management in cloud
 
     ![Screenshot](/images/management-in-cloud.png)
-    
+
+
+## Sustainability in cloud
+
+![Screenshot](/images/sustainability-cloud.png)
+
+
+#### Some terms
+1. KPI: Key performance Indicator
+![Screenshot](/images/kpi1.png)
+
+![Screenshot](/images/kpi2.png)
+
+
+
+## Infrastructure as a Service(IaaS)
+- the cloud provider is responsible for maintaining the 
+    - hardware, 
+    - network connectivity to the internet, and 
+    - physical security
+- You're responsible for everything else, including:
+    - Operating system installation, configuration, and maintenance
+    - Network configuration
+    - Database and storage configuration
+
+- With IaaS, you're essentially renting the hardware in a cloud datacenter, but what you do with that hardware is up to you.
+
+![Screenshot](/images/cloud-service-types-comparison.png)
+
+![Screenshot](/images/Iaas.png)
+
+
+## Platform as a Service(PaaS)
+- You focus on your application code, data, and access controls.
+- Depending on service configuration, some networking and application security settings are shared.
+
+![Screenshot](/images/paas.png)
+
+
+
+## Software as a Service(SaaS)
+- you're essentially renting or using a fully developed application.
+- Email, financial software, messaging applications, and connectivity software are all common examples of a SaaS implementation.
+- You primarily manage your data, identity and access settings, and device access posture. 
+- SaaS has the lowest operational overhead for customers.
+
+![Screenshot](/images/saas.png)
