@@ -46,3 +46,19 @@
     - This was designed with privacy in mind. A hospital sharing patient records to train a model is a data protection problem; a hospital contributing model updates without ever sending the records is a much easier conversation
     - Here if local update poisoned weight then it creates problem
     - So, this solve privacy problem but creates another problem
+
+
+## Inheritance Problem
+- Traning LLM from scratch means 
+    - assembling trillions of tokens of data
+    - acquiring compute infrastructure to process it
+    - running training job cost tens of millions of dollar
+- So, best start with others model
+
+- Pre-trained model and fine- Tuning
+    - Fine tuning is the process of continuing to train one of these pre-trained models on smaller, task specific datasets
+
+    - When you fine tune trained model, you inherit everything that model already contain which result in
+        1. safety alignment erodes, not brakes: example model has been trained to follow safe path when generating response. Fine tuning is like adding new path
+        2. Specialisation increases attack surface: fine tuning narow focus, reducing resilience to unexpected tokens
+        3. Version matters, and it's rarely tracked 
