@@ -62,3 +62,26 @@
         1. safety alignment erodes, not brakes: example model has been trained to follow safe path when generating response. Fine tuning is like adding new path
         2. Specialisation increases attack surface: fine tuning narow focus, reducing resilience to unexpected tokens
         3. Version matters, and it's rarely tracked 
+
+
+
+## Black Box Problem
+- When security team want to audit software they can
+    - read source code
+    - compiled binaries can be disassembled, stepped through, and reason about
+- In Trained model
+    - they're billions of floating-point number
+    - they carry no human readable record of
+        - how they are shaped?
+        - what data influenced them?
+        - what behaviours they encode?
+
+## Model card
+- It is structured document that accompanies model and describe what it is, how it was built, and where it falls.
+- It was introduced by google researcher in 2019
+
+![Screenshot](/images/modelcard.png)
+
+- The GAP
+    - Like in mango juice there is very low percent mango included, in model also there's no regulatory requirement to produce one; as of now, it remains voluntary for most use cases
+    -  The Data Provenance Initiative audit of over 1,800 datasets found documentation gaps throughout the supply chain, and model cards sit at the end of that same underdocumented pipeline.
