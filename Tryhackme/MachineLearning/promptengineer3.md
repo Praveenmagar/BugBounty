@@ -103,3 +103,120 @@
     - Few-shot: Complex patterns, domain-specific outputs, multiple edge cases
     - Chain-of-Thought: Multi-step reasoning, security analysis requiring justification, debugging complex logic
     - Templates: Repeatable tasks, team standardisation, quality control
+
+
+## Proper example
+1. CHALLENGE 1
+    Technique: Zero-shot
+    Definition: Instruction plus task input. No examples. The task input is required and never counts as an example.
+    Task: Write a **zero-shot** prompt that asks an AI to classify a given log entry as either "authentication_success" or "authentication_failure" based on its content.
+    Tip: Include a clear instruction and the log entry as input, but do not provide any prior examples.
+- Answer
+    - Instruction:
+        Analyze the following log entry and classify it as either "authentication_success" or "authentication_failure" based on its content.
+
+    - Classification Criteria:
+        * Classify as "authentication_success" if the log entry indicates a successful login, successful authentication, access granted, or valid user credentials.
+        * Classify as "authentication_failure" if the log entry indicates a failed login, authentication error, invalid credentials, access denied, account lockout, or unsuccessful authentication attempt.
+
+    - Log Entry:
+        Failed login attempts: 40 from IP 192.168.1.10 in 2 minutes.
+
+    - Output Format:
+        Classification: <authentication_success | authentication_failure>
+
+    Provide only the classification.
+
+2. CHALLENGE 2
+    Technique: One-shot
+    Definition: Exactly one input/output example demonstrating the task, then the actual task.
+    Task: Write a **one-shot** prompt that asks an AI to detect phishing indicators in an email subject line. Include one example of an email subject line and its phishing indicator (e.g., "Urgent: Your Account Will Be Suspended" → "Spoofed urgency").
+    Tip: Show one input/output pair first, then the actual task with a new subject line.
+- Answer
+    - Instruction:
+        Analyze the email subject line and identify the primary phishing indicator. Common phishing indicators include spoofed urgency, fear tactics, requests for sensitive information, fake rewards, and impersonation.
+
+    - Example Input:
+        Email Subject: Urgent: Your Account Will Be Suspended
+
+    - Example Output:
+        Phishing Indicator: Spoofed urgency
+
+    - Now perform the same task on the following subject line.
+
+    - Email Subject:
+        Security Alert: Verify Your Account Immediately
+
+    -Output Format:
+        Phishing Indicator: <indicator>
+
+3. CHALLENGE 3
+    Technique: Few-shot
+    Definition: 2–5 input/output pairs covering varied cases, followed by the actual task.
+    Task: Write a **few-shot** prompt that asks an AI to review a snippet of Python code for SQL injection vulnerabilities. Include at least two varied examples (e.g., safe vs. unsafe code) before the task.
+    Tip: Show diverse cases (e.g., parameterized queries, concatenation flaws) to guide the AI’s analysis.
+- Answer
+    - Instruction:
+        Review the following Python code snippet and determine whether it is vulnerable to SQL injection. Explain your reasoning briefly.
+
+    - Example 1
+        Input:
+
+        ```python
+        username = input("Username: ")
+        query = "SELECT * FROM users WHERE username = '" + username + "'"
+        cursor.execute(query)
+        ```
+
+        Output:
+        Vulnerable: Yes
+
+    Reason:
+        User input is directly concatenated into the SQL query, which can allow SQL injection.
+
+    Example 2
+        Input:
+        ```python
+        username = input("Username: ")
+        cursor.execute(
+        "SELECT * FROM users WHERE username = %s",
+        (username,)
+        )
+        ```
+
+        Output:
+        Vulnerable: No
+
+    Reason:
+        The query uses parameterized statements, which prevent SQL injection.
+
+    Example 3
+
+        Input:
+
+        ```python
+        user_id = request.args.get("id")
+        query = f"SELECT * FROM users WHERE id = {user_id}"
+        cursor.execute(query)
+        ```
+
+        Output:
+        Vulnerable: Yes
+
+        Reason:
+        User input is inserted directly into the query using string formatting, creating a SQL injection risk.
+
+Now review the following code snippet.
+
+Input:
+
+```python
+user_email = input("Email: ")
+query = "SELECT * FROM customers WHERE email = '" + user_email + "'"
+cursor.execute(query)
+```
+
+Output Format:
+Vulnerable: <Yes | No>
+
+Reason: <brief explanation>
