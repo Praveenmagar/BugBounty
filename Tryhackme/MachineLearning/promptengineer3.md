@@ -206,17 +206,87 @@
         Reason:
         User input is inserted directly into the query using string formatting, creating a SQL injection risk.
 
-Now review the following code snippet.
+    - Now review the following code snippet.
+        Input:
+        ```python
+        user_email = input("Email: ")
+        query = "SELECT * FROM customers WHERE email = '" + user_email + "'"
+        cursor.execute(query)
+        ```
 
-Input:
+        Output Format:
+        Vulnerable: <Yes | No>
+        Reason: <brief explanation>
 
-```python
-user_email = input("Email: ")
-query = "SELECT * FROM customers WHERE email = '" + user_email + "'"
-cursor.execute(query)
-```
+
+4. CHALLENGE 4
+Technique: Chain-of-Thought
+Definition: Explicitly requests step-by-step reasoning before the final answer. Zero-shot CoT uses "think step by step"; few-shot CoT shows a worked example with visible reasoning steps.
+Task: Write a **chain-of-thought** prompt that asks an AI to triage a security alert for suspicious login activity. The AI should break down its analysis into clear steps before concluding.
+Tip: Use "think step by step" in the instruction and include a worked example with reasoning steps.
+- Answer
+Instruction:
+Triage the following security alert for suspicious login activity. Think step by step before giving the final conclusion.
+
+Worked Example
+
+Alert:
+User john.doe had 25 failed login attempts from IP 203.0.113.45 within 3 minutes, followed by one successful login from the same IP.
+
+Reasoning Steps:
+
+1. Identify the login pattern: Multiple failed login attempts occurred in a short time.
+2. Check for suspicious indicators: 25 failed attempts in 3 minutes suggests a possible brute-force attempt.
+3. Check the final outcome: A successful login occurred after the failures.
+4. Assess risk level: This may indicate credential compromise.
+5. Decide the triage result: The alert should be treated as suspicious.
+
+Final Conclusion:
+Suspicious login activity detected.
+
+Now triage the following alert.
+
+Alert:
+User admin had 40 failed login attempts from IP 192.168.1.10 within 2 minutes, followed by a successful login from a different location.
 
 Output Format:
-Vulnerable: <Yes | No>
+Reasoning Steps:
+1.
+2.
+3.
+4.
+5.
 
-Reason: <brief explanation>
+Final Conclusion:
+<benign | suspicious | critical>
+
+
+5. CHALLENGE 5
+Technique: Prompt Template
+Definition: Reusable structure with clearly labelled placeholders (e.g., `[LOG_ENTRY]`, `[LANGUAGE]`).
+Task: Write a **prompt template** for classifying security logs as either "malicious" or "benign." Use placeholders for the log entry and classification criteria.
+Tip: Label placeholders descriptively (e.g., `[LOG_ENTRY]`), and include a brief description of each placeholder’s purpose.
+- Answer
+Template Purpose:
+Classify a security log entry as either "malicious" or "benign" based on specified classification criteria.
+
+Placeholders:
+
+* [LOG_ENTRY] = The security log entry to be analyzed.
+* [CLASSIFICATION_CRITERIA] = The rules used to determine whether the log entry should be classified as malicious or benign.
+
+Prompt Template:
+
+Instruction:
+Analyze the following security log entry and classify it as either "malicious" or "benign" according to the provided classification criteria.
+
+Classification Criteria:
+[CLASSIFICATION_CRITERIA]
+
+Log Entry:
+[LOG_ENTRY]
+
+Output Format:
+Classification: <malicious | benign>
+
+Provide only the classification.
