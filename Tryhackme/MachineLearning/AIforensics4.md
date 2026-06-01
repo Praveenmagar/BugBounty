@@ -64,3 +64,45 @@
 
 ![Screenshot](/images/aiforensics.png)
 
+## AI Limitation
+1. Probabilistic Vs Deterministic
+    - Traditional softwarea and algorithms are deterministic, same input same output
+    - Today AI and modern machine learning models are probabilistic, they use statistical model to learn from data and make predictions with certain possibilities
+    - But digital forensics field demands consistent and repeatable result
+
+2. Accuracy vs Precision vs Recall
+    - Accurcay: 
+        - if there are 100 files, 99 are benign(harmless) and, one is malicious.
+        - If a model were to predict all files to be benign, it would achieve 99% accuracy, but this does not make it efficient. Overfitting, where a model can be overtrained on , can directly affect the accuracy of a model.
+    - Precision:
+        - Higher precision = fewer false positive
+        -  in isolation as the model can choose to be very selective, only flagging the very obvious malicious files, meaning some malicious files may be missed
+    - Recall
+        - Recall measures how successful the model was in identifying all positives in the provided dataset
+
+
+## AI & DFIR
+- Four key areas of DFIR
+    1. Image and video forensics
+        - Convolutional Neural Network(CNN): It automatically learns patterns in data using small filter commonly used for images
+        - Examples
+            - CNN based forgery detection: Researcher started combining traditional forensics like Error level analysis(ELA: technique used in image forensics to detect areas of image that may been digitally altered) with CNN to identify image tampering with accuracy rating 94%
+            - Deepfake detection: best way to tackle attacker using AI is by controlling and using it by ourselves. CNN models have recently started being used in conjunction with some other AI technologies to develop specialised detectors.
+            - Generative Adversarial Networks(GANs):It is one of exciting development in image and video forensics, a setup where two neural network compete: one generates fake video and other tries to detect it
+    
+    2. Communication Analysis
+        - It involves processing and analysis of large volume of text
+        - Phishing Email detection
+            - Transformer based model trained for Natural language processing like BERT and RoBERTa, excel at identifying phishing email with 99% accuracy
+        - Chat log and Social media analysis
+            - Same above technique is used to automatically scan chats for keywords or pattern related to threats
+
+    3. Timeline reconstruction and user behaviour
+        - It is common and critical part of investigation, with labour intensive and time consuming task.
+        - ML help us in
+            - Automated event timeline reconstruction
+            - Anomaly detection
+    4. Malware detection/analysis
+        - Deep neural network made possible to classify file as malicious or benign(e.g microsoft and intel's stamina project)
+        - ML is use for dynamic analysis to detect malicious or not
+        - AI/ML is very common in antivirus and endpoint detection response product
