@@ -109,4 +109,38 @@
     - AI powered SIEM/SOAR platform for threat detection or response
     - Intelligence threat hunting and malware analysis
 
-    34 page
+## Why AI Red teaming Matter?
+- Because AI model failure causes
+    1. Manipulated financial system
+    2. Compromised Autonomous system
+    3. Large-scale disinformation and manipulation
+    4. Intellectual property theft
+
+## Questions
+1.  Identify a system you use regularly that likely incorporates AI/ML (e.g., streaming recommendation, spam #lter, translation service). From an attacker's perspective, list three potential ways you might target the AI aspects based on the vulnerability categories discussed. What would be your goal in each case?
+- Example System: Email Spam Filter (e.g., Gmail)
+1. Data Poisoning Attack
+Method: Inject large amounts of carefully crafted emails into the training data.
+Goal: Train the model to classify spam emails as legitimate, allowing phishing emails to bypass detection.
+2. Adversarial Input Attack (Evasion)
+Method: Modify spam emails using special characters, misspellings, or altered wording that appears normal to humans but confuses the AI model.
+Goal: Evade the spam filter and deliver malicious emails to users' inboxes.
+3. Model Extraction Attack
+Method: Continuously query the spam-filtering system and analyze responses to infer how the model makes decisions.
+Goal: Recreate a similar model and use the knowledge to craft emails that reliably bypass detection.
+
+2. Explain in your own words why a traditional vulnerability scanner focused on code analysis would likely miss a sophisticated Evasion Attack designed to make an autonomous vehicle misinterpret a road sign. What kind of testing approach would be needed?
+- A traditional vulnerability scanner would likely miss a sophisticated evasion attack because it focuses on finding software flaws and coding vulnerabilities, not how an AI model interprets real-world inputs. If an attacker slightly modifies a road sign with stickers, markings, or colors, the vehicle's AI may misclassify the sign even though the code itself is secure and functioning correctly. Since there is no coding error to detect, a code-analysis scanner would not flag the issue.
+To identify this type of threat, adversarial testing (AI red teaming) is needed. This involves intentionally creating modified road signs, unusual environmental conditions, and other deceptive inputs to test how the AI model responds. The goal is to evaluate the model's behavior under attack scenarios and determine whether it can reliably recognize signs despite attempts to fool it. This behavioral testing is much more effective for detecting AI-specific vulnerabilities than traditional code scanning
+
+- What is evasion attack?
+    - Evasion attack is a tactic in which an attacker alters input data during the inference (usage) phase to deceive a model or security system, causing it to misclassify the data or ignore malicious activity
+
+- Adversarial testing is a proactive security and evaluation method that intentionally subjects a system—most notably AI and machine learning models—to malicious, tricky, or unexpected inputs
+
+3.  Consider the "Dual-Use Nature of AI." Describe one hypothetical scenario where an AI capability designed for cybersecurity defense (e.g., anomaly detection) could be repurposed or manipulated by an attacker for o!ensive ends. What might be the objective?
+- One example of the dual-use nature of AI is an AI-based anomaly detection system designed to identify unusual network activity and detect cyberattacks. An attacker who gains access to the system could study how the AI distinguishes normal behavior from suspicious behavior. Using this knowledge, they could gradually modify their attack patterns to closely resemble legitimate user activity, avoiding detection.
+The attacker might also use a similar AI model to analyze network traffic and determine the safest times, methods, and pathways for launching an attack without triggering alerts. In this case, a defensive AI capability is repurposed to improve the attacker's stealth and effectiveness.
+Objective: The attacker's goal would be to evade security monitoring, remain undetected within the network, and maintain long-term access for activities such as data theft, espionage, or further system compromise.
+
+page 41
