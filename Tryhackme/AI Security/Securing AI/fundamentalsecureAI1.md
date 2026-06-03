@@ -6,4 +6,9 @@
     - In AI model: new component appears, and data flows through paths that existing security controls were never designed to monitor
 
     ![Screenshot](/images/aisecurity.png)
-    
+
+- The TryAssist Architecture
+    - It has nine components
+
+    ![Screenshot](/images/tryassist.png)
+
