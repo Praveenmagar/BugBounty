@@ -86,4 +86,27 @@
 ## AI vulnerability categories
 1. Data poisoning
 2. Evasion Attacks(Adversarial examples)
-    - 
+3. Model extraction/ Theft
+4. Membership inference
+5. Prompt injection/ manipulation
+6. Backdooring
+
+
+## Dual nature of AI: Attacker Vs Defender
+- AI itself is a powerful dual use technology
+- AI Red team must understand both side of this coin
+
+- AI for Offense:
+    - Attackers actively use AI for
+        - Generating phishing emails or deepfake audio or video for social engineering
+        - Automate vulnerability discovery in code or infrastructure
+        - Optimize attack path
+        - Create adaptive malware that evades signature based detection
+        - Conduct automated reconnaissance
+
+- AI for defense
+    - Advance anomaly detection in network traffic or user behaviour
+    - AI powered SIEM/SOAR platform for threat detection or response
+    - Intelligence threat hunting and malware analysis
+
+    34 page

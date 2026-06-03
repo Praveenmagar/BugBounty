@@ -49,3 +49,48 @@ pieces, enabling them to understand and generate human-like language when assess
 - After the pre-training, humans come back into play, performing a step called RLHF (Reinforcement Learning from Human Feedback)
 
 ![Screenshot](/images/llms.svg)
+
+#### Some terms
+1. AI
+    - It is the overarching field, encompassing all systems that mimic human intelligence
+2. ML
+    - subfield of ML that enables systems to learn patterns from data without explicit programming
+3. DL
+    - specialised branch of ML, which uses neural networks to process vast amounts of data in complex ways without the need for human interaction, making it effectively scalable ML 
+4. LLMs
+    -  like GPT, are advanced DL models built on neural networks, specifically transformers, designed to understand and generate human-like text
+
+
+## AI Security threats
+- Divided into two categories
+    1. Vulnerability in AI models
+    2. Existing attacks that can now be enhanced by leveraging AI
+
+- Vulnerability in AI models
+    1. Prompt Injection
+    2. Data Poisoning
+    3. Model theft: type of attack involves cloning an AI model by interacting with its API
+    4. Privacy leakage
+    5. Model drift
+
+- Enhanced Attacks
+    1. Generating Malware
+    2. Deepfake
+    3. Phishing
+
+
+## Defensive AI
+- AI can enhance
+    1. ability to analyze
+    2. Ability to predict
+    3. Ability to summarize
+    4. Ability to investigate
+
+- Securing AI models
+    1. Securing AI models: use of Role-Based Access Control and Multi-Factor Authentication can help restrict access and add an extra layer of security to systems.
+    2. Privacy protection: by encrypting data
+    3. implementation of AI security standards: standards like ISO/IEC 27090 provide guidance on identifying and mitigating security threats specific to AI systems
+    4. Model monitoring: By using tools like SHAP and LIME
+
+
+1. According to IBM, how many days faster does AI help identify and contain breaches: 108

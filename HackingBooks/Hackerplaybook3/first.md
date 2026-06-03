@@ -114,5 +114,6 @@
     ![Screenshot](/images/dnscat2.png)
 
 - Instead of communicating over HTTP/HTTPS like modern C2 frameworks, it communicates through DNS queries and responses
+- This isn't the fastest shell, due to the fact that all communication is over DNS,it really gets around those situations where a Meterpreter or similar shell just won't work but it fully supports tunneling
 
-page 32
+page 34

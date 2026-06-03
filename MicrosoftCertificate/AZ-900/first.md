@@ -153,3 +153,21 @@
 - SaaS has the lowest operational overhead for customers.
 
 ![Screenshot](/images/saas.png)
+
+
+
+## Region and region pair in Azure
+- Try to have azure in same region because if they are far away they'll get high latency resulting in performance reduce
+- If i put one data center in india and another in china then there will be data sovereignty requirements like india have different data rules and china have different data rules. So try to put in same pairing region like west india and south india.
+- During backup also it will prioritize similar pairing region first in cloud
+- During update they will not update pairing region at same time, at first they update one pair like west india first and then go for south india second because updating pair if error occurs then both region will collapsed
+
+
+## Availability Zones
+- You can select availability zones which physically seperate your resources within azure region
+- Here we will have three zone options for each subscription: 1,2 or 3
+- zonal:
+    - When i pick particular availability zone, then this is called zonal
+    - Here each subscription have three zones like Z1, Z2 and Z3. Only one zone among three is called zonal
+- Zone redundant:
+    - It is a services which automatically span three availability zone

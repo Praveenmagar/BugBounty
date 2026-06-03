@@ -37,5 +37,42 @@
         - Novelty
             - Company confused novelty(being like new) with innovation(new ideas like tesla electric car)
             - Novelty are added in an attempt to differentiate, but not reinvent.
+            - Novelty can drive sales but the impact doesn't last
+
+    ### The price you pay for the Money You make
+    - Leadership is the ability to rally people not for a single event, but for years
+    - Repeat business Vs Loyalty
+        - Repeat business is when people do business with you multiple times
+        - Loyalty is when people are willing to turn down a better product or better price to continue doing business with you
+
+    ### Manipulation lead to transactions, Not loyalty
+
+    ### Just because it works doesn't mean it Right
+    - The reality is, in today's world, manipulations are the norm(accepted standard)
+
+
+# An alternative Perspective
+- 
             page 26
         
+
+
+# from page 143
+- New topic
+    - Growing up with someone having common life experiences increases the likelihood of a shared common worldview
+    - Examples
+        - Walt Disney and Roy Disney were brothers
+        - Bill Gates and Paul Allen went to high school together
+        - Martin Luther King Jr. and Ralph Abernathy both preached in Birmingham
+        - Steve Jobs and Steve Wozniak were best friends in high school
+    
+    - They inspire people to talk about a product or idea, make their lifestyle, share ideas and help them to advance without needing to pay them
+    
+## Build a Megaphone that works
+- Investing millions of dollars to advertise result
+    - No doubt message was loud but wasn't clear
+    - It was all What's and HOW but no Why.
+    - Everyone know what product did but no one know what they believed
+    - Good news is no complete loss, product sell as long as ads are on air.
+    - It is effective but expensive way to make money
+    - Money can't plant seed of loyalty
