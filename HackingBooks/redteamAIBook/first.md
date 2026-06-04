@@ -143,4 +143,4 @@ To identify this type of threat, adversarial testing (AI red teaming) is needed.
 The attacker might also use a similar AI model to analyze network traffic and determine the safest times, methods, and pathways for launching an attack without triggering alerts. In this case, a defensive AI capability is repurposed to improve the attacker's stealth and effectiveness.
 Objective: The attacker's goal would be to evade security monitoring, remain undetected within the network, and maintain long-term access for activities such as data theft, espionage, or further system compromise.
 
-page 41
+![Screenshot](/images/AIredteamlifecycle.png)
