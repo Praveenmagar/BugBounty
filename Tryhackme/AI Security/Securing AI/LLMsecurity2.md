@@ -6,7 +6,7 @@
 3. System based threats
 4. User based threats
 
-1. Data based Threats
+## Data based Threats
 - LLM are fundamentally data drive
 - LLMs sometimes leak data by design because they memorise and regurgitate patterns from their training data
 - Three majod data based threats
