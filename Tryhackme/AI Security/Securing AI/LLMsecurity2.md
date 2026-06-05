@@ -41,3 +41,26 @@
             ```
             MI_SAMPLE_CHARLIE confidence score 0.08
             ```
+
+## Model Based Threats
+- These attacks may expose intellectual property(model weights) or sensitive training data that the model has memorised
+- Targeted across two different threats
+    1. Model extraction
+        - It is the process of illicitly copying a machine learning model's functionality or parameters without authorisation
+        - Example: Mindgard was able to extract ChatGPT 3.5 turbo into smaller model around 100 times smaller, achieved with only $50 in API costs
+        - In a nutshell:
+            - Target: Model parameters(intellectual property)
+            - Input: large volumes of carefully chosen API queries
+            - Output: surrogatge or distilled model that replicates the original model's behaviour
+    2. Model Inversion
+        - This attacks exploit a model's output to reveal information about its training data
+        - Some confused this with membership inference attack but this attack treat the model as source of stored information rather than a classifier to be probed
+        - E.g in 2023, researchers managed to extract verbatim chunks of ChatGPT's training data
+        - In a nutshell
+            - Target: Model's internal representations
+            - Input: unknown or partiall known data
+            - Output: New training data or attributes reconstructed from model
+    - How to ask question to model
+        ```
+        What is the employee ID?
+        ```
