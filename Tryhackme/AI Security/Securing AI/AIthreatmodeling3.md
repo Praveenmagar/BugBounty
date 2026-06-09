@@ -119,3 +119,10 @@
 - Seven step methodology
 
 ![Screenshot](/images/pasta.svg)
+
+
+## Specific AI assets and Attack Surface
+
+![Screenshot](/images/aiassets.png)
+
+- A stolen database is serious, but a stolen model is a fundamentally different kind of loss, you can't just rotate a credential and move on
