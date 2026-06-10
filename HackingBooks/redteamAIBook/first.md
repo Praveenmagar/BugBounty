@@ -143,4 +143,41 @@ To identify this type of threat, adversarial testing (AI red teaming) is needed.
 The attacker might also use a similar AI model to analyze network traffic and determine the safest times, methods, and pathways for launching an attack without triggering alerts. In this case, a defensive AI capability is repurposed to improve the attacker's stealth and effectiveness.
 Objective: The attacker's goal would be to evade security monitoring, remain undetected within the network, and maintain long-term access for activities such as data theft, espionage, or further system compromise.
 
+## AI red teaming lifecycle
+
 ![Screenshot](/images/AIredteamlifecycle.png)
+
+1. First Phase: Planning and Scoping(Mission definition)
+    - Define objective: Clearly articulate the goal
+    - Establish Rules of Engagement: Define explicit boundaries, permitted TTPs, communication protocol
+    - Identify Scope: Seperate in-scope and out-of-scope
+    - Resource allocation
+    - Legal and Ethical overview
+
+2. Threat modelling and Reconnaissance(Information Gathering)
+    - Identify adversary personas: Find realistic threat actor relevant to target system like inside threat, script kiddie, Organized crime, nation-state actors
+    - Information gathering
+    - Hypothesize attack paths: Apply "Attackers think in graphs" (system thinking) mindset here
+
+3. Execution and Testing(Offensive Operations)
+    - Develop attack scenario
+    - Tooling and technique selection
+    - Simulate attack
+    - Iterative refinement
+
+4. Analysis and Finding consolidation(Damage Assessment)
+    - Validate findings
+    - Root cause analysis
+    - Impact assessment
+    - Synthesize result
+
+5. Reporting and recommendations(Actionable intelligence)
+    - Develop report
+    - Detail findings
+    - Prioritize risks
+    - Provide actionable recommendations
+
+6. Remediation support and re-testing(Validation and improvement optional but recommended)
+    - Communicate and brief
+    - Support remediation
+    - Validate fixes
