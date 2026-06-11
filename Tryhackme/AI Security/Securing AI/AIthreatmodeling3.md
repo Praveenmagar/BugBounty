@@ -126,3 +126,43 @@
 ![Screenshot](/images/aiassets.png)
 
 - A stolen database is serious, but a stolen model is a fundamentally different kind of loss, you can't just rotate a credential and move on
+
+## Data supply chain and STRIDE's Gaps
+- Knowing what to protect is only half the picture, we also need to understand how those assets are built, moved, and consumed, because every step in that process is an opportunity for compromise
+- AI data supply chain
+
+![Screenshot](/images/aisupplychain.png)
+
+
+## Adapting STRIDE for AI System
+1. S- Spoofing: Data Source Impersonation
+    - In RAG(Retrieval-Augmented Generation) architecture, model retrieves context from external sources, vector databases, document stores, and web content and treats that context as trustworthy
+    - An attacker who can inject content into these sources effectively spoofs the knowledge the model relies, causing it to generate attacker controlled information
+
+2. T-Tampering: Data Poisoning
+    - Attacker injects malicious data into training pipeline, causing the model to learn incorrect patterns
+
+3. R- Repudiation: Unexplainable Model Decisions
+    - Lack of Decision Audit Trails: When AI model makes a consequential decision, approves a loan, flags a transaction, or denies a claim, can you trace why? Most ML models lack built-in explainability.
+    - Without robust logging of inputs, outputs, model versions, and retrieval context, reproducing or explaining a specific decision after the fact is extremely difficult
+
+4. I- Information Disclosure: Model Extraction
+    - An attacker systematically queries a model's API and uses the input-output pairs to reconstruct a functionally equivalent copy of the model. This requires no access to the model's internals, only its public facing endpoint is needed. The stolen model represents significant intellectual property loss and can be probed offline for adversarial weakness
+
+5. D- Denail of Service: Inference Cot Exploitation
+    - AI inference is orders of magnitude more expensive than traditional API calls. 
+    - In cloud based deployments billed per token or per query, an attacker can inflict financial damage without taking the system offline. By generating large volumes of expensive queries, long prompts, requests for maximum-length outputs, they drive operational costs to unsustainable levels
+
+6. E- Elevation of Privilege: Jailbreaking and Excessive Agency
+    - An attacker crafts prompts that cause an LLM to ignore its safety guidelines, content policies, or behavioural restrictions.
+    - The model is designed to refuse certain requests, but the attacker's input "elevates" their access to capabilities the model was instructed to restrict
+
+## What STRIDE still misses
+- Some AI threats don't map cleanly to any single STRIDE category
+    - Adversarial examples: inputs designed to cause misclassification, span Tampering, Spoofing, and Elevation of Privilege depending on context. There's no single STRIDE lens that captures them fully.
+
+    - Model bias and fairness issues are security-adjacent concerns with real regulatory and compliance implications, but they don't fit traditional threat categories. A biased model isn't being "attacked", it's failing in a way STRIDE wasn't designed to describe.
+
+    - Emergent behaviours in large models, capabilities or behaviours that weren't explicitly trained for and may not be anticipated, are a class of risk with no traditional parallel. You can't threat model behaviour that nobody predicted would exist.
+
+![Screenshot](/images/strideai.png)
