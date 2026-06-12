@@ -196,3 +196,39 @@
         - Stard with STRIDE: Walk each AI component through the six threat categories to identify "What could go wrong"
         - Enrich with ATLAS: For each identified threat, look up the corresponding ATLAS technique to get the specific how, including documented attack methods and real world case studies
         - Apply mitigations: ATLAS provides recommended countermeasures for each technique, giving you actionable defensive guidance
+
+
+## OWASP LLM Top 10: Mapping Risks to components
+
+![Screenshot](/images/owasp.png)
+
+- Component Risk Profiles
+    - Risk profiles for the three most critical components
+    1. LLM Inference Endpoint:
+        - Carries the highest risk concentration
+        - Appears in seven of ten OWASP entries: prompt injection, sensitive info disclosure, improper output handling, excessive agency, system prompt leakage, misinformation, unbounded consumption
+        - This component requires most comprehensive hardening
+    2. Vector Database/ RAG Pipeline:
+        - Appears in three entries: indirect prompt injection via retrieved content, embedding weakness, misinformation
+        - Hardening focuses on input validation for indexed content, access controls on the vector store
+    3. Training Pipeline:
+        - Primary component for data and model supply chain threats
+        - Appears in three entries: sensitive data entering training, supply chain, data and model poisoning
+
+![Screenshot](/images/awaspstride.png)
+
+- STRIDE gives you the wide-angle view. ATLAS gives you the technical detail. OWASP tells you where to point the camera
+
+## Practical
+
+![Screenshot](/images/3lab1a.png)
+
+![Screenshot](/images/3lab1b.png)
+
+![Screenshot](/images/3lab1c.png)
+
+![Screenshot](/images/3lab1d.png)
+
+![Screenshot](/images/3lab1e.png)
+
+![Screenshot](/images/3lab1f.png)
