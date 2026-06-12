@@ -166,3 +166,33 @@
     - Emergent behaviours in large models, capabilities or behaviours that weren't explicitly trained for and may not be anticipated, are a class of risk with no traditional parallel. You can't threat model behaviour that nobody predicted would exist.
 
 ![Screenshot](/images/strideai.png)
+
+## MITRE ATLAS: The AI Threat Technique Catalogue
+- MITRE maintains it with contributions from industry, academia, and government
+
+![Screenshot](/images/atlas.png)
+
+- Key techniques you need to know
+    1. Data Poisoning(AML.T0020): 
+        - Injecting malicious data into training pipelines to corrupt model behaviour
+        - Similar to STRIDE: Tampering
+    2. Model Extraction(AML.T0024):
+        - Systematically querying a model's API to reconstruct a functional copy.
+        - Requires no internal access, just the public endpoint and enough queries
+        - Similar to STRIDE: Information Disclosure
+    3. Evade ML model(AML.T0015):
+        - Crafting adversarial data that prevents a model from correctly identifying the contents of the input
+        - Adversaries may use this to evade malware detection, bypass content filters
+        - Similar to multiple STRIDE categories: Tampering, Spoofing, and Elevation of Privilege
+    4. LLM Prompt Injection:
+        - Manipulating an LLM's behaviour by injecting instructions through direct user input or indirect content the model processes
+        - Similar to STRIDE: Tampering
+    5. Backdoor ML model:
+        - Embedding hidden triggers in a model during training
+
+- Using ATLAS during Threat Modeling
+    - ATLAS isn't a replacement for STRIDE, it's the enrichment layer. 
+    - Two working together
+        - Stard with STRIDE: Walk each AI component through the six threat categories to identify "What could go wrong"
+        - Enrich with ATLAS: For each identified threat, look up the corresponding ATLAS technique to get the specific how, including documented attack methods and real world case studies
+        - Apply mitigations: ATLAS provides recommended countermeasures for each technique, giving you actionable defensive guidance
