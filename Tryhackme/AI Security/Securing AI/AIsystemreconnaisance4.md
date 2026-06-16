@@ -129,7 +129,7 @@
 ## Excercise of AI fingerprinting
 ![Screenshot](/images/aifingerprintexercise.png)
 
-![Screenshot](/images/aifingerprintexercise.png1.png)
+![Screenshot](/images/aifingerprintexercise1.png)
 
 
 ## Enumerating AI System
