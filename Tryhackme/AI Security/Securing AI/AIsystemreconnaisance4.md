@@ -133,3 +133,78 @@
 
 
 ## Enumerating AI System
+- Fingerprinting tells you "that is an MLflow server"
+- Enumeration tells you "that MLflow server contains 4 experiments, 3 production models, artifact URIs pointing to s3://cyphira-ml-models/, and the models were created by J.Chen(AI Enginner) at Cyphira"
+- MLflow Enumeration
+    - It is most rewarding service to enumerate because it stores everything in one place and exposes it through a clean REST API. If you find an open MLflow instance, then chain you follow
+        1. List all experiments
+            ```
+            POST /api/2.0/mlflow/experiments/search
+            ```
+            - it returns every experiment on the server with its name and internal ID
+        2. List registered models
+            ```
+            GET /api/2.0/mlflow/registered-models/list
+            ```
+            - It returns full model inventory
+        3. Get model version details
+            ```
+            GET /api/2.0/mlflow/model-versions/search
+            ```
+            - Response includes **source** field, which contains the artifact URI, which frequently points to internal cloud storage
+        4. Search training runs
+            ```
+            POST /api/2.0/mlflow/runs/search
+            ```
+            - submit this with empty body or filter, you get back hyperparameters, training metrics and custom tags
+        5. List downloadable artifacts
+            ```
+            GET /api/2.0/mlflow/artifacts/list
+            ```
+            - it lists actual model files available for download
+
+- Inference Server Metadata
+    - Triton and TensorFlow serving both expose metadata endpoints 
+        - On Triton **GET /v2/models/<name>/config**: this is equivalent of getting a complete database schema
+        - On TensorFlow serving **GET /v1/models/<name>/metadata** returns same kind of input/output tensor specifications, shape, dtype, and name
+- Vector Database Enumeration
+    - It reveals what data the AI system is working with and which embedding model processes it
+    - On Weaviate, **GET /v1/meta** returns the server version and installed modules
+        - **GET /v1/schema** returns every class definition, including property names and the vectoriser module configuration
+        - It aslo exposes **/v1/graphql** for full schema introspection and data querying on unauthenticated instances
+    - On Qdrant, **GET /collections** lists all collection names
+        - **GET /collections/<name>** returns vector dimensions, distance metric and total point count
+    - On Chroma, older versions expose **GET /api/v1/collections** without authentication by default
+
+- Prometheus Metrics as Intelligence
+    - Model servers expose **/metrics** on a dedicated port(Triton on 8002, TorchServe on 8082)
+    - These Prometheus-format endpoints return
+        - Model names and version numbers currently loaded
+        - Inference request counts and latency percentiles
+        - Batch sizes being processe
+        - GPU memory utilisation per model
+    - This is passive intelligence
+
+- Debug Interfaces and Information Leakage
+    - FastAPI-based ML services auto-generate **/docs(Swagger UI)** and **/openapi.json**
+    - MLflow's GraphQL endpoint /graphql has historically bypassed the REST API's authentication controls
+    - Unauthenticated attacker could query internal resolvers like **mlflowSearchRuns** and **mlflowGetRun**, extracting host machine usernames
+
+- Jupyter Notebook Enumeration
+    - **GET /api/kernels** on an unauthenticated Jupyter instance returns the names, kernel IDs, and last activity timestamps of running kernels
+    - Data Scientists routinely store cleartext credentials for MLflow (MLFLOW_TRACKING_USERNAME, MLFLOW_TRACKING_PASSWORD), cloud storage access keys, and Hugging face tokens directly in their code
+
+## Exercise of AI Enumerating
+![Screenshot](/images/enumeratingai.png)
+
+- To find more details i need to go inside of directory which i have gone here
+
+![Screenshot](/images/enumeratingai1.png)
+
+
+## Mapping the AI Attack Surface
+![Screenshot](/images/aiattacksurface.png)
+
+- How AI expands the Traditional Attack Surface
+    - In 14 AI components we catalogued across 20+ ports but in traditional web app, which roughly adds 5 ports to a network, but the port count alone is not full picture
+    
