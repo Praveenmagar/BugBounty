@@ -31,8 +31,8 @@
     - TOrchServe exposes inference on 8080, management API on 8081, and metrics on 8082
     - For LLM-specific deployments, Ollama runs on 11434, and vLLM on 8000
 
-## Why do many of these expose both HTTP and gRPC(gRPC Remote Procedure Call) at the same time?
-- gRPC is faster for streaming large tensor payloads between internal services, while HTTP/REST is easier for client applications to consume
+- Why do many of these expose both HTTP and gRPC(gRPC Remote Procedure Call) at the same time?
+    - gRPC is faster for streaming large tensor payloads between internal services, while HTTP/REST is easier for client applications to consume
 
 1. Orchestration and Experiment Tracking
 - These platforms manage the entire ML lifecycle, from experiment design through to model deployment.
@@ -60,3 +60,76 @@
 ![Screenshot](/images/aiport1.png)
 
 ![Screenshot](/images/aiport2.png)
+
+- If you know the ports and the service banners, finding AI infrastructure is not hard
+
+## Agent Exercise
+- Scanning for AI services
+
+![Screenshot](/images/aiscan.png)
+
+
+## Fingerprinting AI Services
+- After understanding AI infrastructure stack: components, ports, and protocols.
+- Now we need to figure out what is actually running behind each open port. This is where fingerprinting comes in
+- Fingerprinting AI services requires different approach, you need to look at
+
+![Screenshot](/images/aifingerprint.png)
+
+1. HTTP Header Fingerprinting
+- Response headers are often the fastest way to identify an AI framework
+    - TorchServe returns a **Server: TorchServe/0.x.x** header
+    - Triton Inference Server includes a **NV-status** header in its responses
+        - If you send **endpoint-load-metrics-format: text**, triton returns hardware telemetry(CPU and GPU utilisation numbers) directly in the response headers. No other framework does this
+    - FastAPI-based ML services show **server: uvicorn** in response
+        - Combining with routes like **/predict** or **/embeddings**, gives strong indicator of python ML backend
+    - OpenAI-compatible wrappers(vLLM,LiteLLM,Ollama) return **x-request-id** headers and structured JSON with an **"object": "model"** field on their **/v1/models** endpoint
+
+2. API Response Signatures
+- Each framework returns distinctly structured JSON
+    - TensorFlow Serving returns **{"model_version_status": [{"version": "1", "state": "AVAILABLE"}]}**
+    - Triton returns: **{"name": "fraud_detector", "versions": ["1"], "platform": "tensorflow_graphdef"}**
+    - MLflow error responses include stack traces referencing mlflow.server and mlflow.tracking namespaces
+        - Even the error tells you what you are talking to
+    - OpenAI-compatible endpoints return: **{"object": "model", "id": "llama-3.1-8b", "created": 1700000000}**
+
+3. Error Message Fingerprinting
+- It is one of most reliable identification techniques, and it works because AI inference APIs are rigid
+- Technique: Send a delibrately malformed payload and read the error response
+    - Send a flat list of integers to a TensorFlow Serving endpoint that expects a complex tensor object, and you get back an error mentioning **tensorinfo_map** which appears in TF serving errors only
+    - Send a bad request to an MLflow server, and the stack trace references **mlflow.server**, **mlflow.tracking**, or **databricks** namespaces
+    - MLflow path traversal errors(CVE-2024-1558) go further, exposing full server filesystem paths
+    - Databricks Mosaic AI returns Java exceptions **io.jsonwebtoken.IncorrectClaimException** for malformed tokens. That is an instant identifier
+
+4. Endpoint Naming Conventions
+- Inference endpoints: /predict, /invocations, /infer, /generate, /embeddings, /score
+- Model management: /v1/models,/v2/models
+- MLflow internal API: /api/2.0/mlflow/(this prefix is distinctive and doesn't appear in any other framework)
+- Kubeflow pipelines: /pipeline/apis/v1beta1/
+
+5. gRPC fingerprinting
+- Traditional HTTP scanners miss this because gRPC is a binary protocol that doesn't respond to standart HTTP probes.
+- But may AI services expose gRPC alongside HTTP
+    - Triton uses gRPC on port 8001
+    - TensorFlow Serving uses on port 8500
+- Tool for this is **grpcurl**
+- If gRPC reflection is enabled, you can dump the entire protobuf schema
+    ```
+    grpcurl -plaintext target:8001 list
+    ```
+    ```
+    grpcurl -plaintext target:8001 describe inference.GRPCInferenceService
+    ```
+
+6. TLS Fingerprinting(JA3/JA4)
+- AI deployments have distinctive TLS signatures because internal service-to-service traffic is dominated by python libraries(request, urllib, gRPC implementation) rather than web browsers
+- JA3 and JA4 hash analysis can differentiate automated ML pipeline traffic from human web browsing at the network level
+- GreyNoise research found that 99% of attack traffic shared same JA4H signature, despite originating from 62 different IP addresses across 27 countries
+
+## Excercise of AI fingerprinting
+![Screenshot](/images/aifingerprintexercise.png)
+
+![Screenshot](/images/aifingerprintexercise.png1.png)
+
+
+## Enumerating AI System

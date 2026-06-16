@@ -13,4 +13,7 @@
 12. Murky: dark, cloudy or difficult to see through
 13. waive: not to demand something you have right to
 14. Explicit: Explain something in clear or direct manner
-15. Vetbatim: to repeat same to same
+15. Verbatim: to repeat same to same
+16. Alignment: Ensuring people or goals work together
+17. Resilience: ability to recover from difficulties
+18. Complementary: two or more different things work well together to form a complete whole

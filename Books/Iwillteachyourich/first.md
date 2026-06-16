@@ -41,3 +41,21 @@
     - There are excellent cash back card, and it's simpler than travel rewards
 - Don't signup for retail store credit card:
     - Why would you sign up for a retail store card that has high fees, near-extortionate interest rates, and terrible rewards?
+
+## Have 2 to 3 great credit card
+
+## If you are booking travel or eating out, use travel card to maximize rewards. For everything else use cashback card
+
+- Chase Sapphire Reserve: for travel and eating out
+- Capital cash back business card: for business
+- Alliant cash back card: for everything else
+- Amex Platinum card: for extra benefit
+
+## The Six Commandments of Credit Cards
+1. Pay off your credit card regularly
+2. Try to get fees on your cards waived
+3. Negotiate a lower APR(Annual percentage rate)
+4. Keep your main cards for a long time, and keep them active, but also keep them simple:   
+    - If you want to get new card, best advice is to keep cards open for as long as possible
+5. Get more credit(Warning! Do this only if you have no debt)
+6. Use yout credit card's secret perks
