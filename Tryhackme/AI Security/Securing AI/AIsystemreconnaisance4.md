@@ -207,4 +207,184 @@
 
 - How AI expands the Traditional Attack Surface
     - In 14 AI components we catalogued across 20+ ports but in traditional web app, which roughly adds 5 ports to a network, but the port count alone is not full picture
+    - Services constantly talk to each other. 
+        - The inference server pulls features from the vector database.
+        - Orchestration platform pushes model updates to the registry
+        - Jupyter notebooks connect to everything
+        - Prometheus scrapes metrics from every service
+        - If one components binds to 0.0.0.0 instead of 127.0.0.1, the entire internal mesh becomes reachable
+    - The security perimeter for an AI deployment is not the external firewall. It extends deep into the internal communication pathways between these services
+
+    ![Screenshot](/images/aiattacksurface1.png)
+
+- Platform Misconfigurations That Attackers Map
+    - Every major ML platform has documented misconfigurations that turn routing deployment into reconnaissance targets
+    - MLflow shipped without authentication by default before version 2.x
+    - Even after authentication added, CVE-2026-2635 revealed that MLflow's **basic_auth.ini** file contained hardcoded default credentials
+        - Attackers running mass port scan on 5000 could authenticate using these default
+    - CVE-2026-2033 went further: directory traversal flaw in artifact handler allowed unauthenticated remote code execution
+    - Both scored CVSS 9.8
+
+    - Kubeflow dashboard are frequently deployed without OIDC authentication and exposed via basic Kubernetes LoadBalancer or NodePort
+        - Unauthenticated user can access full Kubeflow interface and spawn Jupyter notebooks, which are attached to Kubernetes service accounts with cluster-level permissions
+        - That is direct path from open ddashboard to container orchestration access
     
+    - TorchServe exposes a management API on port 8081 that allows dynamic model registration from arbitrary URLs
+        - If that post is accessible, attacker can instruct the server to download and load malicious.mar(model archive) file from an external server
+        - TorchServe executes initialisation code during model loading, so loading a crafted archive achieves remote code execution
+
+    - SageMaker notebooks with **DirectInternetAccess: Enabled** accept inbound connections from the internet
+        - A 2024 cloud security report found that 82% of organisation using SageMaker had at least one notebook configured this way
+
+- Model Registries: The Highest-Value Target
+    - Registry is the map that tells the attacker where everything else is stored
+    - Registry doesn't just store model files. It stores the complete lineage
+        - Model names
+        - Version history
+        - Stage labels(staging, production, archived)
+        - Creation timestamps
+        - Run IDs linking back to full training metadata
+        - Artifact URIs revealing internal cloud storage paths
+        - User ID of every contributor
+
+- Supply Chain Reconnaissance
+    - AI system depend heavily on external resources, and those dependencies are discoverable during reconnaissance
+    1. Hugging Face tokens appear in Github repositories via simple dorks
+        ```
+        filename:.env HF_TOKEN
+        ```
+    2. Dependency confusion applies to ML pipelines just as it applies to traditional software
+        - ML projects have large **requirements.txt** files with internal package names
+        - If an internal package like **company-data-utils** is not registered on PyPI, an attacker can register it there
+    3. Model downloaded sources are identifiable during reconnaissance
+        - If organisation pulls models from Hugging Face hub or PyTorch hub, the download paths are visible in configuration files, notebook cells, and container build logs
+        - Attacker can inject a malicious model into an upstream source, poisons the entire supply chain
+
+![Screenshot](/images/mitrerecon.png)
+
+## Mapping AI attack surface example
+
+![Screenshot](/images/mappingattack1.png)
+
+![Screenshot](/images/mappingattack2.png)
+
+![Screenshot](/images/mappingattack3.png)
+
+
+## Structured Reconnaissance Methodology and Detection
+- By now, we have
+    - Scanned for AI components
+    - Fingerprinted the frameworks behind them
+    - Extracted metadata from their APIs
+    - Mapped how they all connect to form an attack surface
+
+![Screenshot](/images/structuredreconn.png)
+
+- Phase 1: Passive reconnaissance
+    - Before touching any target, see what is already publicly visible
+    - Search Shodan, Censys, and FOFA for AI service banners
+        - Dorks are
+            ```
+            port:5000 "MLflow"
+            ```
+            ```
+            port:8888 title:"Home Page - Select or create a notebook"
+            ```
+            ```
+            http.title:"Ray Dashboard"
+            ```
+    - Search Github for leaked credentials
+        ```
+        filename:.env MLFLOW_TRACKING_URI
+        ```
+        ```
+        filename:.env HF_TOKEN
+        ```
+        ```
+        filename:config.json model_name site:github.com
+        ```
+    - Check **arXiv** and engineering blogs for published model architectures
+        - Team regularly publish papers describing the exact frameworks and infrastructure they use
+        - This maps to ATLAS technique AML.T0000(Search for Victim's Publicly Available Research Materials)
+    - Check DockerHub and Github Container Registry for organisation named ML images
+    - Public container images for hardcoded configurations
+    - Look job postings
+
+2. Active Scanning
+- Target AI-specific ports
+    ```
+    nmap -p 5000,6333,8000,8001,8002,8080,8265,8501,8888,9000,11434,19539 -sV --script=http-title,http-headers <targets>
+    ```
+    - This command covers most ML serving components
+
+3. API Fingerprinting
+- Run ffuf or feroxbuster with an AI-specific wordlist against every discovered HTTP service. Your wordlist should include
+    - /v1/models
+    - /v2/models
+    - /v2/health/ready
+    - /api/2.0/mlflow/experiments/list
+    - /api/2.0/mlflow/registered-models/list
+    - /pipeline/apis/v1beta1/pipelines
+    - /api/serve/deployments/
+    - /v1/schema
+    - /v1/meta
+    - /api/kernels
+    - /api/contents
+    - /openapi.json
+    - /docs
+    - /graphql
+    - /metrics
+    - /api/tags
+    - /api/show
+    - /collections
+    - /healthz
+    - /ping
+- For each endpoint that returns a 200, apply the fingerprinting techniques and check response headers, parse JSON structure, and look at error messages
+
+4. Metadata Extraction
+- For every confirmed AI services, run enumeration chain
+    - On MLflow: experiments, registered models, model version, training runs, and artifact listing. Five API calls that map the entire ML protfolio
+    - On Triton or TF Serving: Model config endpoints for tensor specs and framework identification
+    - On vector database: Schema and collection endpoints for data type and embedding model ifentification
+    - On Jupyter: Kernel listing and notebook cell contents for cleartext credentials
+
+5. Supply chain review
+- Identify model download sources visible in configurations, notebook cells, and container build logs
+- Check whether internal model artifact buckets(S3,GCS,MinlO) are publicly readable
+- Check container registries for image pull access without credentials
+
+![Screenshot](/images/toolreference.png)
+
+
+- What your Reconnaissance looks like from the other side?
+- If you understand what your activity looks like to defender, you become better at both attack and defence
+    1. Model enumeration pattern
+    - Brust of sequential GET requests to /v2/models from single IP.
+    - Normal users don't query model listings repeatedly in rapid succession
+
+    2. Scripted MLflow access
+    - API calls to /registered-models/list and /model-versions/search without a corresponding UI session
+    - The MLflow web interface generates specific session cookies and additional requests
+    - Raw API calls without those are clear indicator of scripted enumeration
+
+    3. Prometheus scraping from outside the monitoring stack
+    - /metrics requests from IPs not in the known monitoring CIDR
+    - Your prometheus server has a known IP
+    - Anyone else reading those metrics is performing reconnaissance
+
+    4. AI-aware port scanning
+    - Port scans that hit 5000, 8000,8001,8080,8265,8888 in sequence from the same source is not random scan
+    - That is someone running the same Nmap command from pahse 2 
+
+    5. Path traversal against MLflow artifacts
+    - Requests containing ../ or %2e%2e%2f against MLflow artifact endpoints signals someone probing for CVE-2026-2033
+
+    6. Jupyter access without a session
+    - /api/kernels and /api/contents requests without a valid session cookie
+    - Either an attacker found the notebook server or an automated tool is enumerating it
+
+![Screenshot](/images/reconmitigate.png)
+
+## Examples
+
+![Screenshot](/images/structuredmethod.png)
