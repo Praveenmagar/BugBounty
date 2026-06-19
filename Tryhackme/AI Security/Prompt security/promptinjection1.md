@@ -168,3 +168,16 @@
 ![Screenshot](/images/promptinpractical2.png)
 
 ![Screenshot](/images/promptinpractical3.png)
+
+## Revision
+1. Which attack type attempts to determine if a specific data sample was included in an LLM's training dataset?
+- Membership inference
+
+2. What attack exploits the persistent conversation state in LLM chatbots to gradually inject malicious information?
+- Memory poisoning
+
+3. Which threat category exploits how LLMs process system instructions and user input as a single context?
+- System based threats
+
+4. Which attack exploits the LLM's inability to distinguish between trusted and untrusted input sources?
+- Prompt injection

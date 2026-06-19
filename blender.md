@@ -59,4 +59,18 @@
 ## Dimension for youtube: 1920X1080 but for insta: 1080X1080
 ## To change world color go from solid mode to render mode
 
-module 2 ko lecture 9 ko 3.47
+## For 2 or more number of object if you want to isolate others and only show one object then use slash(/) near poweroff button after selecting object which you want to see
+
+## To see quad view: ctrl + alt + Q
+
+## To change object mode to edit mode type: tab
+
+## To select multiple object: shift + left mouse button(LMB)
+
+## To select all object in blender click: A
+
+## To disselect all object in blender click: Alt +A
+
+## Vertex, edge and face: if you draw a single line, then there is two point in that line, then this line is called edge and two point is called vertex. So there is one edge and two vertices
+
+model 3 lecture 2
