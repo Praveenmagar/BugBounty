@@ -52,6 +52,7 @@
         ]
         ```
 
+
 1. What role field value should developer instruction always be placed under in structured prompt templates?
 - System
 
