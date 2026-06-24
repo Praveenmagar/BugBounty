@@ -59,3 +59,10 @@
     - If you want to get new card, best advice is to keep cards open for as long as possible
 5. Get more credit(Warning! Do this only if you have no debt)
 6. Use yout credit card's secret perks
+
+## Five steps to getting rid of credit card debt
+1. Figure out how much debt you have
+![Screenshot](/images/detectingdebt.png)
+2. Decide what to pay off first
+3. Negotiate down the APR
+86
