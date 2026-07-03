@@ -128,5 +128,5 @@
 
 ## Azure Bash command
 ```
-az ad user create --display-name "John Smith" --password "123456ldfjd" --user-principal-name john@smith123.onmicrosoft.com
+az ad user create --display-name "John Smith" --password "1@fdae344" --user-principal-name John@prabinmagar711gmail.onmicrosoft.com
 ```
