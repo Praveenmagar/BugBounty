@@ -126,7 +126,16 @@
 ## License
 - You need to have anAzure ID license, either P1 or P2 license in order to create custom any type of custom roles
 
-## Azure Bash command
+## Azure Bash command to create user
 ```
 az ad user create --display-name "John Smith" --password "1@fdae344" --user-principal-name John@prabinmagar711gmail.onmicrosoft.com
+```
+
+## What is Cloud Shell?
+- It is a browser based command line environment provided by Microsoft that lets  you manage Azure resources without installing any software on your computer
+- It provides two options: Powershell or Bash
+
+## Command to create group
+```
+az ad group create --display-name Marketing --mail-nickname Marketing
 ```

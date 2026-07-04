@@ -49,3 +49,31 @@
 1. Cost Efficiency
     - Uses the Opex model, (expenses are fully tax deductible at the time of use)
     - Use pay-as-you-go model, pay only what you use
+2. Scalability and flexibility
+    - Easy to scale resources up or down as needed
+3. Accessibility
+4. Disaster Recovery and collaboration
+
+## Shared Responsibility Model
+- It refers to the division of security and operational responsibilities between the cloud service provider(CSP) and the customer
+- The CSP is responsible for the security of the cloud, while the customer is responsible for security in the cloud
+
+
+## Resource Group
+- It is like a folder that helps you organize and manage related resources in Microsoft Azure
+- You can group resources/instances(like virtual machines, databases, storage accounts) that belong to the same project or application
+- All resources in a group share the same location(region) for easier management though they can be from different services 
+- To create or deploy any resources in Azure you must have a resource group first because resource need to live in a resource group
+- Resources are instances of Azure services that you create or deploy like virtual machines, storage accounts, sql databases, networks, security groups and etc..
+
+## Naming Resource group
+- Implement a consistent naming convention for resource groups to improve organization and manageability
+- Example: Sydney-office-RG, Sydney-NSG(RG-Resource group, NSG- Network Security Group)
+
+## Renaming Resource Groups
+- Azure doesn't support renaming a resource group directly
+- To rename, you must create a new resource group with desired name and then move all the resources from the existing group to new one 
+
+## Deleting Resource Groups
+- It deletes all resources contained within
+- It deletes permanently, ensure you have backups
