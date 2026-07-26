@@ -39,7 +39,7 @@
 ## In Each class there is
 1. Network ID and Host ID
 2. In each class first IP is network id which identify network and last IP is broadcast IP to delivery message through entire network at same time
-3. For IP 202.5.16.0: 
+3. For class C IP 202.5.16.0: 
     - Network id is 202.5.16.0
     - IP address range: 202.5.16.1- 202.5.16.254
     - Broadcast ID: 202.5.16.255
@@ -53,3 +53,4 @@
     - 10.0.0.0: Network ID
     - IP range: 10.0.0.1- 10.255.255.254
     - Broadcast IP: 10.255.255.255
+    
