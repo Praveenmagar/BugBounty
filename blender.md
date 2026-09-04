@@ -1,6 +1,16 @@
 
+## alt + mouse left + move mouse: to rotate viewport of 3D
+
+# For transformation we have mainly three things
+    1. Location
+    2. Rotation
+    3. Scale
+
 # Location
-## G + mouse: to move the object, then left click to post there and right click to bring back to initial position
+## G(Grab) + mouse: to move the object, then left click to post there and right click to bring back to initial position
+## In blender 
+    1. Left click means to conform action
+    2. Right click means to cancel action
 ## G + y + mouse: to move object in y direction
 ## G+ x + mouse: to move object in x direction
 ## G+ z + mouse: to move object in z direction
@@ -19,6 +29,11 @@
 
 # To delete
 ## Use X or del button
+
+# To undo action
+## ctrl + Z
+
+# Note: we can do rotation, scaling and location using gizmos
 
 ## Go to add - Mesh - monkey: adding monkey
 ## After adding monkey - right click in mouse and select shade smooth
@@ -73,4 +88,4 @@
 
 ## Vertex, edge and face: if you draw a single line, then there is two point in that line, then this line is called edge and two point is called vertex. So there is one edge and two vertices
 
-model 3 lecture 2
+model 2 lecture 5
