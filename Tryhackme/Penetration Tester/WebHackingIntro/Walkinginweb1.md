@@ -43,3 +43,18 @@
 ## Developer tool: Network
 - Used to keep track of every external request a webpage makes
 - If you click on the Network tab and then refresh the page, you'll see all the files the page is requesting. 
+
+## Developer tool: Storage
+- It lets to view and manage data that a website stores in our browser
+- Stored on the client side
+- As penetration tester, checking storage helps us understand how the application handles authentication, session data, user preferences, and other stored values
+- It has following options
+    - Local storage: store data persistently
+    - Session storage: store data temporarily
+    - Cookies: Often used for sessions and authentication
+    - Cache storage: stores resources like images, scripts, and API responses for faster loading
+- Cookies are important for pentester
+- Important flag inside cookies
+    - HttpOnly: Prevent JavaScript from accessing the cookie, helping protect against XSS attacks
+    - Secure: Ensure cookie is sent only over HTTPS
+    - SameSite: Helps to mitigate CSRF attacks
