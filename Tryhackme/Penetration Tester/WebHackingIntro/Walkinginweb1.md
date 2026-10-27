@@ -35,6 +35,10 @@
 ## Developer tool: Debugger
 - It gives us the option of digging deep into the JavaScript code
 - In Firefox and Safari, this feature is called Debugger, but in Google Chrome, it's called Sources
+- JavaScript files are normally in one line due to minimised(all tabs, spacing, and newlines has been removed to make file smaller)
+- It is also obfuscated, making it purposely difficult to read and harder for other developer to copy
+- We can return some formatting using Pretty Print option which look like two curly braces ({}) to make it more readable
+- Breakpoint: Code points we can use to force the browser to stop processing JavaScript and pause the current execution
 
 ## Developer tool: Network
 - Used to keep track of every external request a webpage makes
