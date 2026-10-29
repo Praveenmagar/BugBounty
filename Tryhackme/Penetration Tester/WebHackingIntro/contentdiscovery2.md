@@ -42,7 +42,7 @@
         - v means verbose
 
 5. Framework stack
-    - After establishing the framework of a website, either from the above favicon or looking the page source such as comments, copyright notices or credits, you can then locate the framework's website.
+    - Once you get link of framework either from the above favicon or looking the page source such as comments, copyright notices or credits, go to that framework path and try to discover something
     - From there, we can learn more about the software and other information, possibly leading to more content we can discover.
 
 
@@ -66,6 +66,15 @@
             ```
             intitle:admin
             ```
+        - intext
+            ```
+            intext:password
+            ```
+        - cache
+            ```
+            cache:tryhackme.com
+            ```
+        
 
 2. Wappalyzer
     - It is an online tool and browser extension that helps identify what technologies a website uses, such as frameworks, Content Management Systems (CMS), payment processors and much more, and it can even find version numbers as well.
@@ -88,4 +97,37 @@
 - Tools used
     - ffuf
     - gobuster
+        ```
+        gobuster dir -u "http://MACHINE_IP" -w /path/to/wordlist
+        ```
     - dirbuster
+
+- Subdomains 
+    - The dns mode allows Gobuster to bruteforce subdomains
+    - During penetration test, checking subdomains of your target's top domain is essential
+    - Because patching regular domain, doesn't mean subdomain is patched
+
+- Subdomains vs Virtual Hosts
+    - Subdomain is resolved through DNS. E.g, blog.example.thm is a DNS record that points to an IP address
+    - Virtual Host(vhost) is resolved by the web server. Multiple sites can run of same IP address with the server using the Host: HTTP header to decide which site to serve
+    - Preparing the environment
+        - Working in local network with DNS server on the web server
+        - First resolve domain
+            ```
+            sudo nano /etc/resolv-dnsmasq
+            ```
+            ```
+            nameserver machine_ip
+            ```
+            ```
+            ctrlc + O 
+            ```
+            ```
+            ctrl + X
+            ```
+        - To restart dnsmasq service
+            ```
+            /etc/init.d/dnsmasq restart
+            ```
+    
+
