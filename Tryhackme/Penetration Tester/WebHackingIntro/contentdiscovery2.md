@@ -129,5 +129,48 @@
             ```
             /etc/init.d/dnsmasq restart
             ```
+
+        - Updating host file to ensure domain used resolve correctly
+            ```
+            sudo nano /etc/hosts
+            ```
+            - add this at end of file
+            ```
+            machine_ip example.thm
+            ```
+            ```
+            ctrl + O
+            ```
+            ```
+            ctrl + X
+            ```
+            - Verify change by pinging
+            ```
+            ping example.thm
+            ```
+    
+- DNS mode
+    - This mode performs DNS lookups using wordlist entries as subdomain candidates
+        ```
+        gobuster dns -d example.thm -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt --wildcard
+        ```
+        - -d: domain
+        - -w: wordlist
+        - --wildcard: force enumeration even when wildcard DNS is detected, allowing result to be returned despite potential false positives
+        - -i: show ip addresses that subdomains resolve to
+        - -r: use custom DNS server for lookups
+
+- vhost mode
+    - This mode doesn't use DNS
+    - It sends HTTP requests to target IP, cycling through wordlist entries as the Host: header value
+    - It finds virtual hosts that aren't registered in public DNS
+        ```
+        gobuster vhost -u "http://MACHINE_IP" --domain example.thm -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt --append-domain --exclude-length 250-320 
+        ```
+        - --append-domain: combine each wordlist entry with the domain
+        - --exclude-length: filters out false positives that share common response size
+        - Review results and identify virtual hosts responding with a 200 OK status and access each one in your browser to explore what's hosted there
+
+
     
 
