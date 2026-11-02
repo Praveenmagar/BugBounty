@@ -11,13 +11,13 @@
     ```
     curl -I machine_ip:3000/
     ```
-    - *** X-Powered-By: Express *** is the primary signal
-    - Sometime this is absent if developer explicitly called *** app.disable('x-powered-by') ***
+    - **X-Powered-By: Express** is the primary signal
+    - Sometime this is absent if developer explicitly called **app.disable('x-powered-by')**
     - Reverse proxies and PaaS platforms (Vercel, Cloudflare, Railway) oftern strip this header before it reaches client
     - If this is absent, fall back to cookie name and unhandled-route format as secondary signals 
-    - The *** connect.sid *** cookie comes from express-session with saveUninitialized: true
-    - with *** saveuninitialize: false *** , cookie appears after session is created
-    - Absebce of *** connect.sid *** doesn't confirm the absence of Express
+    - The **connect.sid** cookie comes from express-session with saveUninitialized: true
+    - with **saveuninitialize: false** , cookie appears after session is created
+    - Absebce of **connect.sid** doesn't confirm the absence of Express
 - To confirm the Express unhandled-route fingerprint, request nonexistent path 
     ```
     curl http://machine_ip:3000/nonexistent
@@ -109,3 +109,4 @@ sql = (
     f'ORDER BY (CASE WHEN (1=1) THEN {order} ELSE name END)'
 )
 ```
+- The CASE WHEN structure is always true(1=1), so the THEN branch always executes, making it the injection entry point
