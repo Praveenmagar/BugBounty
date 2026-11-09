@@ -50,3 +50,74 @@
 - Python server is realistic finding because it requires no exploitation
 - The misconfiguration is that it is running in a location where it shouldn't be, serving files that shouldn't be public
 - If directory shows and **index.html** file instead of showing directory listing, try requesting paths directly or navigating to subdirectories
+
+
+
+
+# Apache2
+- Most widely deployed web server in the world, so it nearly appears every engagement that touches web infrastructure
+- It's default Ubuntu configuration leaves several things enabled that testers regularly find and report
+- Three most common are
+    1. Directory listing on specific paths
+    2. Server-status module
+    3. Backup file sitting in document root
+
+## Version Disclosure
+- Check server header
+    ```
+    curl -SI http://machine_ip:80 | grep -i server
+    ```
+    - Knowing exact version help you check for known CVEs and understand the server capabilities
+
+## Directory Listing
+- Apache's **Options +Indexes** directive tells the server to display a file listing when a directory doesn't have an **index.html** or similar default file
+- Browse to
+    ```
+    http://machine_ip/files/
+    ```
+- Read every file in it, developers sometimes leave CSV exports, internal notes, or backup files in directories
+
+## The mod_status page
+- Apache has built-in status page powered by **mod_status** module
+- When configured correctly, it is accessible only from localhost, when misconfigured with **Require all granted**, it is accessible from any IP
+- You can access using
+    ```
+    http://machine_ip:80/server-status
+    ```
+
+## Finding unlinked files with Gobuster
+- Backup files, old configuration copies, and forgotten test files often sit in the document root with no links pointing to them
+- Tools like **Gobuster** discover these by guessing paths against a wordlist
+    ```
+    gobuster dir -u http://TARGET_IP:80 -w /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt -x bak,txt,html -t 20
+    ```
+    - If **.bak** file extension exist, it is always worth retrieving
+    - Also pay attention to  **.htpasswd** files
+    ```
+    curl -s http://machine_ip:80/backup.bak
+    ```
+
+
+# Node.js(Express)
+- This application behave differently from Apache and Python HTTP servers
+- They are not serving static files from a configured document root
+- They are running application code and that code decides what to return for every request
+- Attackers look at this because developers often leave development mode features enabled when they push to production
+
+## Framework Fingerprinting
+- For **node.js** you will see **X-Powered-By: Express** in the response
+    ```
+    curl -sI http://machine_ip:3000
+    ```
+- Express sets this header automatically unless developer explicitly disables it
+
+## Reading the Application Version
+- Root path of many Express applications returns JSON status response
+    ```
+    curl -s http://machine_ip:3000
+    ```
+
+## Triggering verbose Errors
+- Express built-in error handler suppresses stack traces when **NODE_ENV** is set to **Production**
+- In **development** mode, it passes them through
+- But developers often write their own error handlers, and those custom handlers expose stack traces regardless of **NODE_ENV**
