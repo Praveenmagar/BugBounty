@@ -121,3 +121,29 @@
 - Express built-in error handler suppresses stack traces when **NODE_ENV** is set to **Production**
 - In **development** mode, it passes them through
 - But developers often write their own error handlers, and those custom handlers expose stack traces regardless of **NODE_ENV**
+- **NODE_ENV=production** is meaningful if no custom error handler overrides it
+- API call to Express server
+    ```
+    curl -s http://machine_ip:3000/api/users | python3 -m json.tool
+
+
+## Enumerating routes via Debug endpoints
+- Misconfigured express application tell you all of its own routes     
+- Developer sometimes build a debug endpoint that lists every registered route for convenience during development, then forget to remove it before going live
+    ```
+    curl -s http://machine_ip:3000/api/routes
+    ```
+
+## Exposed environment variables
+- Environment variables in Node.js applications often contain database credentials, API keys, and configuration flags
+- Debug endpoint that returns **process.env** is a significant finding
+    ```
+    curl -s http://machine_ip:3000/api/debug/env
+    ```
+
+## Static file serving
+- Express use **express.static()** middleware to serve front-end assets like JavaScript, stylesheets, and configuration
+- Client side JavaScript file sometimes contain API endpoint, URLs, internal hostnames, or debug flags
+    ```
+    curl -s http://machine_ip:3000/static/config.js
+    ```           
