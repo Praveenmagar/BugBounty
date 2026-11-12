@@ -147,3 +147,57 @@
     ```
     curl -s http://machine_ip:3000/static/config.js
     ```           
+
+
+# Nginx
+- After Apache and Node.js, the Nginx investigation follows the same template but with its own configuration vocabulary
+- It is most commonly used as reverse proxy, a load balancer, or a high performance static file server.
+- In production environment, it sits in front of an application server and handles the public facing traffic. So, misconfigured Nginx can expose internal structure, reveal operational data, or make files accessible that should not be.
+- Nginx typically run on port 80 or 443
+
+## Version Disclosure
+    ```
+    curl -sI http://machine_ip:80 | grep -i server
+    ```
+- It uses **server_tokens** directive to controls both Server header and the version string in default error pages
+- Setting **server_tokens** off suppresses the version from both places at once
+- If Server header is suppressed, requesting non-existent path will confirm whether **server_tokens** is truly off or just partially configured
+    ```
+    curl -s http://machine_ip:80/nonexistent-path
+    ```
+
+## Directory listing with Autoindex
+- Nginx doesn't enable directory listing by default
+- When developer want to expose they add **autoindex** to location block in configuration
+```
+location /files/ {
+    autoindex on;
+    root /var/www/nginx/;
+}
+```
+- Browse to file directory
+    ```
+    http://machine_ip/files/
+    ```
+- or curl
+    ```
+    curl -s http://machine_ip/files/
+    ```
+
+## The nginx_status Endpoint
+- **stub_staus** module exposes real-time connection metrics at a configurable URL
+- The secure configuration restricts access to localhost only
+- Misconfigured version allows acccess from any IP
+```
+location /nginx_status{
+    stub_status;
+    allow all; # should be: allow 127.0.0.1; deny all;
+}
+```
+- Request to see what it exposes
+    ```
+    curl -s http://machine_ip:80/nginx_status
+    ```
+
+- Nginx configuration files live in **/etc/nginx/**
+- If you ever have shell access to machine running Nginx, read site configuration in **/etc/nginx/sites-available/**
