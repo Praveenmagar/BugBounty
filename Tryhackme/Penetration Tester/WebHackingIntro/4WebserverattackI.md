@@ -201,3 +201,33 @@ location /nginx_status{
 
 - Nginx configuration files live in **/etc/nginx/**
 - If you ever have shell access to machine running Nginx, read site configuration in **/etc/nginx/sites-available/**
+
+
+
+# Common Misconfigurations Across Servers
+- We see four servers with its own configuration model and its own set of common mistakes
+- There are also patterns that appear regardless of what server is running
+- Two most consistent are
+    1. Security headers
+    2. Finding with automated scanning
+
+## Security Headers
+- It is HTTP response headers that instruct the browser on how to handle the page content
+- They protect against a range of client-side attacks including clickjacking, MIME sniffing, and cross site scripting
+![server_screenshot](/images/Tryhackme/servers.png)
+- **X-Frame_Options** is tenchincally superseded by **Content-Security-Policy: frame-ancestors**, which provides finer grained control
+- Modern sites may handle clickjacking protection through CSP alone and intentionally omit **X-Frame-Options**
+    ```
+    for port in 80 8000 3000 8080; do echo "=== Port $port ==="; curl -sI http://10.48.171.88:$port/ | grep -iE "x-frame-options|x-content-type|content-security-policy|strict-transport|referrer-policy" || echo "(no security headers found)"; done
+    ```
+    - When **grep** returns no output, it means none of those headers is present
+    - **Strict-Transport-Security** only applies over HTTPS connection
+
+## Automated scanning with Nikto
+- Nikto is web server scanner that checks for known misconfigurations, outdated software, exposed admin interfaces, and missing security headers
+    ```
+    nikto -h http://machine_ip:80 -nointeractive
+    ```
+    - **-nointeractive** flag suppresses prompts so the scan runs without waiting for input
+![server-Screenshot](/images/Tryhackme/fourservr.png)
+
