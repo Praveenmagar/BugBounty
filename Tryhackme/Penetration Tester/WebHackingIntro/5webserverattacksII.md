@@ -36,3 +36,33 @@
     ```
 ![WEBDAV_screenshot](/images/Tryhackme/webdav.png)
 
+
+# IIS Tilde(Short Filename) Enumeration
+- The IIS tilde enumeration technique leaks the names of files and directories that standard browsing and directory brute-forcing would never find.
+
+## The 8.3 short Filename problem
+- Windows inherited 8.3 filename format from DOS
+- Here, filename can have at most 8 characters for the name and 3 for the extension
+- This is default until newer server builds and cloud images disable it
+- Conversion rule
+    - Take first 6 characters of long name
+    - Append **~1** (or **~2**, **~3** if there is a collision)
+    - Keep first 3 characters of the extension
+    - E.g **BackupFiles** becomes **Backup~1**, **AdminPortal1** becomes **AdminI~1**, **users_backup.xlsx** becomes **users_~1.xls**
+    ![tilde_screenshot](/images/Tryhackme/iistilde.png)
+
+## How Vulnerability works?
+- When IIS receives request with **~** character in path, it responds differently depending on it matches a real short name or not.
+- Path that matches real file or directory returns different HTTP status code or response size than path that matches nothing
+- For example, if scanner determines that **/BACKUP~1/** returns **404** with a slightly different response body than **/ZZZZZZ~1**, it knows **BACKUP~1** exists
+- This vulnerability was first publicly disclosed in 2012 discovered in 2010 which affects IIS 5.x through IIS10.0, including current versions on Server 2022
+- Recommended mitigation is to disable 8.3 filename creation in Windows registry
+
+## Scanning with iis_shortname_scan.py
+- It's a python tool that probes server character by character and reconstructs short names from the response differences
+```
+python3 iis_shortname_scan.py http://machine_ip/
+```
+
+## What short name tells you?
+![shortname](/images/Tryhackme/shortname.png)
